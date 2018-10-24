@@ -3,7 +3,7 @@
 if (empty($_POST)){
   ?>
   <form action="#" id="test" method="post">
-    Nom :<input type="text" name="FormPrenomCli" size="4">
+    Nom :<input type="text" name="formNomVille" size="4">
     <input type="submit" value="Ok" />
   </form>
   <?php
@@ -13,6 +13,6 @@ if (empty($_POST)){
   $ville = new Ville($_POST);
   $db = new Mypdo();
   $villeManager = new VilleManager($db);
-  $villeManager -> addville($ville);
+  $villeManager -> addVille($ville);
 }
   ?>
