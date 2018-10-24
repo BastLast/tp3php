@@ -13,6 +13,14 @@ if (empty($_POST)){
   $ville = new Ville($_POST);
   $db = new Mypdo();
   $villeManager = new VilleManager($db);
+
   $villeManager -> addVille($ville);
+
+?>
+<img src="image\valid.png" alt="confirmation validee">
+La ville "<b><?php
+echo $_POST["vil_nom"];
+ ?></b>" a bien été ajoutée
+<?php
 }
   ?>
