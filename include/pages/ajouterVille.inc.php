@@ -3,7 +3,7 @@
 if (empty($_POST)){
   ?>
   <form action="#" id="test" method="post">
-    Nom :<input type="text" name="formNomVille" size="4">
+    Nom :<input type="text" name="vil_nom" size="4">
     <input type="submit" value="Ok" />
   </form>
   <?php
