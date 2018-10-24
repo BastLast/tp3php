@@ -1,13 +1,19 @@
 <?php
 class VilleManager{
-	$db=mysqli_connect("localhost","bd","bede");
-	mysqli_select_db($db,"covoit");
-	
-	public function inserer(){
-	$reqIns="insert".$vil_nom." from ville ";
-	$exeIns=mysqli_query($db,$reqIns);
-	
+	public function __construct($db){
+		$this->db = $db;
 	}
-	$reqSel="select vil_nom from ville";
-	
+
+	public function addville($ville){
+
+		$req = $this->db->prepare(
+			'INSERT INTO ville (vil_nom) VALUES (:nomVille)'
+		);
+
+		$req ->bindValue(':nomVille',$ville->getNomVille(),PDO::PARAM_STR);
+
+		$req -> execute();
+	}
+
+
 }
