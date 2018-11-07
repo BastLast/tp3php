@@ -2,7 +2,7 @@
 <?php
 if (empty($_POST)){
   ?>
-  <form action="#" id="test" method="post">
+  <form action="#" id="FormVille" method="post">
     Nom :<input type="text" name="vil_nom" size="4">
     <input type="submit" value="Ok" />
   </form>
