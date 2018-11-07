@@ -28,6 +28,16 @@ if (empty($_POST)){
       </form>
       <?php
     }else{
+      ?>
+      <?php
+      $parcour = new Parcours($_POST);
+      $db = new Mypdo();
+      $parcoursManager = new ParcoursManager($db);
+      $parcoursManager -> addParcours($Parcour);
 
+      ?>
+      <img src="image\valid.png" alt="confirmation validee">
+      Le parcours a bien été ajouté
+      <?php
     }
     ?>
