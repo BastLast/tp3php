@@ -4,15 +4,15 @@ class Parcours{
 	private $par_km;
 	private $vil_num1;
 	private $vil_num2;
-	
+
 	public function __construct($valeur=array()){
-		if (!empty($valeur){
+		if (!empty($valeur)){
 			$this->affecte($valeur);
 		}
 	}
-	public fonction affecte($donnees){
+	public function affecte($donnees){
 		foreach ($donnees as $attribut =>$valeur){
-			swith($attribut){
+			switch($attribut){
 				case 'par_num':$this ->setParNum($valeur);
 				break;
 				case 'par_km':$this->setParKm($valeur);
@@ -24,21 +24,23 @@ class Parcours{
 			}
 		}
 	}
+
+
 	public function setParNum($valeur){
 		$this->par_num=$numPark;
-		
+
 	}
 	public function setParKm($valeur){
 		$this->par_km=$numPark;
-		
+
 	}
 	public function setVille1($valeur){
 		$this->vil_num1=$Ville;
-		
+
 	}
 	public function setVille2($valeur){
 		$this->vil_num2=$Ville;
-		
+
 	}
 	public function getParNum(){
 		return $this->par_num;
@@ -52,5 +54,5 @@ class Parcours{
 	public function getVille2(){
 		return $this->vil_num2;
 	}
-	
+
 }
