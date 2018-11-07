@@ -26,20 +26,20 @@ class Parcours{
 	}
 
 
-	public function setParNum($valeur){
-		$this->par_num=$numPark;
+	public function setParNum($numPar){
+		$this->par_num=$numPar;
 
 	}
-	public function setParKm($valeur){
-		$this->par_km=$numPark;
+	public function setParKm($nbkm){
+		$this->par_km=$nbkm;
 
 	}
-	public function setVille1($valeur){
-		$this->vil_num1=$Ville;
+	public function setVille1($ville){
+		$this->vil_num1=$ville;
 
 	}
-	public function setVille2($valeur){
-		$this->vil_num2=$Ville;
+	public function setVille2($ville){
+		$this->vil_num2=$ville;
 
 	}
 	public function getParNum(){

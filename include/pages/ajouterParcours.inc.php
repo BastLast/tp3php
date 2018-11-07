@@ -11,33 +11,37 @@ if (empty($_POST)){
       <?php
       $listeVilles = $villeManager->getList();
       foreach ($listeVilles as $ville) {
-        echo '<option value="'.$ville->getNomVille().'">'.$ville->getNomVille().'</option>';
+        echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
       }
       ?>
-      </select>
-      Ville 2 :
-      <select name="ville2">
-        <?php
-        foreach ($listeVilles as $ville) {
-          echo '<option value="'.$ville->getNomVille().'">'.$ville->getNomVille().'</option>';
-        }
-        ?>
-        </select>
-        Nombre de kilomètre(s) :<input type="text" name="vil_nom" size="4">
-        <input type="submit" value="Valider" />
-      </form>
+    </select>
+    Ville 2 :
+    <select name="ville2">
       <?php
-    }else{
+      foreach ($listeVilles as $ville) {
+        echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+      }
       ?>
-      <?php
-      $parcour = new Parcours($_POST);
-      $db = new Mypdo();
-      $parcoursManager = new ParcoursManager($db);
-      $parcoursManager -> addParcours($Parcour);
+    </select>
+    Nombre de kilomètre(s) :<input type="text" name="parkm" size="4">
+    <input type="submit" value="Valider" />
+  </form>
+  <?php
+}else{
+  ?>
+  <?php
+  $parcour = new Parcours(
+    array('par_km' => $_POST['parkm'],
+    'vil_num1' => $_POST['ville1'],
+    'vil_num2' => $_POST['ville2'])
+  );
+  $db = new Mypdo();
+  $parcoursManager = new ParcoursManager($db);
+  $parcoursManager -> addParcours($parcour);
 
-      ?>
-      <img src="image\valid.png" alt="confirmation validee">
-      Le parcours a bien été ajouté
-      <?php
-    }
-    ?>
+  ?>
+  <img src="image\valid.png" alt="confirmation validee">
+  Le parcours a bien été ajouté
+  <?php
+}
+?>
