@@ -4,18 +4,19 @@ class ParcoursManager{
 		$this->db = $db;
 	}
 
-	//fonction permettant d'ajouter une ville
+	//fonction permettant d'ajouter un parcours
 	public function addParcours($parcour){
 
 		$req = $this->db->prepare(
-			'INSERT INTO parcours (par_km) VALUES (:km)'
+			'INSERT INTO parcours (par_km,vil_num1,vil_num2) VALUES (:par_km,:vil_num1,:vil_num2)'
 		);
 
-		$req ->bindValue(':nomVille',$ville->getNomVille(),PDO::PARAM_STR);
-
+		$req ->bindValue(':par_km',$parcour->getParKm(),PDO::PARAM_STR);
+		$req ->bindValue(':vil_num1',$parcour->getVille1(),PDO::PARAM_STR);
+		$req ->bindValue(':vil_num2',$parcour->getVille2(),PDO::PARAM_STR);
 		$req -> execute();
 	}
-
+/*
 	//fonction permetant de lister toutes les villes
 	public function getList(){
 
@@ -30,17 +31,5 @@ class ParcoursManager{
 		return $listeVilles;
 		$req -> closeCursor();
 	}
-
-	//fonction permetant de compter le nombre de villes
-	public function countVilles(){
-		$resu = array();
-		$sql = 	'SELECT count(vil_num) as total FROM ville';
-		$req = $this->db->query($sql);
-		$resu = $req->fetch(PDO::FETCH_OBJ);
-		$nbVille = $resu->total;
-
-		return $nbVille;
-		$req -> closeCursor();
-	}
-
+*/
 }
