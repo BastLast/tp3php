@@ -24,7 +24,7 @@ class Ville{
 	}
 
 	public function setNumVille($numVille){
-		$this->vil_nom=$numVille;
+		$this->vil_num=$numVille;
 	}
 
 	public function setNomVille($nomVille){
@@ -33,5 +33,9 @@ class Ville{
 
 	public function getNomVille(){
 		return $this->vil_nom;
+	}
+
+	public function getNumVille(){
+		return $this->vil_num;
 	}
 }
