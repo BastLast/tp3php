@@ -34,11 +34,11 @@ class VilleManager{
 	//fonction permetant de compter le nombre de villes
 	public function countVilles(){
 		$resu = array();
-		$sql = 	'SELECT count(vil_num)FROM ville';
+		$sql = 	'SELECT count(vil_num) as total FROM ville';
 		$req = $this->db->query($sql);
-		$resu = $req->fetch();
-		$nbVille = $resu[0];
-		
+		$resu = $req->fetch(PDO::FETCH_OBJ);
+		$nbVille = $resu->total;
+
 		return $nbVille;
 		$req -> closeCursor();
 	}
