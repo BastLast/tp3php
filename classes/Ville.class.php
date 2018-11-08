@@ -38,4 +38,8 @@ class Ville{
 	public function getNumVille(){
 		return $this->vil_num;
 	}
+
+
+
+
 }
