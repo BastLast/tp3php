@@ -21,10 +21,18 @@ class ParcoursManager{
 	public function getList(){
 
 		$listeParcours = array();
+		$sql = 	'SELECT par_num,vil_num1,vil_num2,par_km FROM parcours
+		ORDER BY par_num';
+
+		/*
+
 		$sql = 	'SELECT par_num,v1.vil_nom,v2.vil_nom,par_km FROM parcours p
 		join ville v1 on p.vil_num1 = v1.vil_num
 		join ville v2 on p.vil_num2 = v2.vil_num
 		ORDER BY par_num';
+
+		*/
+
 		$req = $this->db->query($sql);
 
 		while ($parcour = $req->fetch(PDO::FETCH_OBJ)) {
@@ -33,5 +41,17 @@ class ParcoursManager{
 		return $listeParcours;
 		$req -> closeCursor();
 	}
-*/
+
+
+	//fonction permetant de compter le nombre de parcours
+	public function countParcours(){
+		$resu = array();
+		$sql = 	'SELECT count(par_num) as total FROM parcours';
+		$req = $this->db->query($sql);
+		$resu = $req->fetch(PDO::FETCH_OBJ);
+		$nbParcours = $resu->total;
+
+		return $nbParcours;
+		$req -> closeCursor();
+	}
 }
