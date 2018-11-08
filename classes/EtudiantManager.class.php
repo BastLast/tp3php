@@ -10,9 +10,9 @@ class EtudiantManager{
 		('INSERT INTO etudiant (per_num,dep_num,div_num) 
 		VALUES (:per_num,:dep_num,:div_num)');
 		
-		$req ->bindValue(':num',$Etudiant->getPerNum(),PDO::PARAM_STR);
-		$req ->bindValue(':nom',$Etudiant->getDepNum(),PDO::PARAM_STR);
-		$req ->bindValue(':prenom',$Etudiant->getDivNum(),PDO::PARAM_STR);
+		$req ->bindValue(':per_num',$Etudiant->getPerNum(),PDO::PARAM_STR);
+		$req ->bindValue(':dep_num',$Etudiant->getDepNum(),PDO::PARAM_STR);
+		$req ->bindValue(':div_num',$Etudiant->getDivNum(),PDO::PARAM_STR);
 		
 		$req->execute();
 	}
