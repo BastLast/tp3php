@@ -13,7 +13,7 @@ if (empty($_POST)){
 	Mail: <input type="text" name="mail" size="4"><br>
 	Login: <input type="text" name="login" size="4">
 	Mot de passe: <input type="text" name="pdp" size="4"><br>
-	Categorie: <input type="radio" name="etudiant" size="4"> Etudiant
+	Categorie: <input type="radio" name="etudiant" size="4" checked="checked"> Etudiant
 	<input type="radio" name="personnel" size="4"> Personnel
 	<input type="submit" value="Valider">
 	</form>
