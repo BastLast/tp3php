@@ -4,10 +4,10 @@ class PersonneManager{
 		$this->db = $db;
 	}
 	
-	//fonction permettant d'jouter une ville 
+	//fonction permettant d'jouter une Personne 
 	public function addPersonne($Personne){
 		$req=$this ->db->prepare
-		('INSERT INTO Personne (per_num,per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd) 
+		('INSERT INTO personne (per_num,per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd) 
 		VALUES (:num,:nom,:prenom,:tel,:mail,:login,:pwd)');
 		
 		$req ->bindValue(':num',$Personne->getPerNum(),PDO::PARAM_STR);
