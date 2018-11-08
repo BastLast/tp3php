@@ -46,7 +46,7 @@ class Parcours{
 		return $this->par_num;
 	}
 	public function getParKm(){
-		return $this->par_num;
+		return $this->par_km;
 	}
 	public function getVille1(){
 		return $this->vil_num1;
