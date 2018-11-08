@@ -16,19 +16,21 @@ class ParcoursManager{
 		$req ->bindValue(':vil_num2',$parcour->getVille2(),PDO::PARAM_STR);
 		$req -> execute();
 	}
-/*
-	//fonction permetant de lister toutes les villes
+
+	//fonction permetant de lister toutes les parcours
 	public function getList(){
 
-		$listeVilles = array();
-		$sql = 	'SELECT vil_nom , vil_num FROM ville ORDER BY vil_nom';
+		$listeParcours = array();
+		$sql = 	'SELECT par_num,v1.vil_nom,v2.vil_nom,par_km FROM parcours p
+		join ville v1 on p.vil_num1 = v1.vil_num
+		join ville v2 on p.vil_num2 = v2.vil_num
+		ORDER BY par_num';
 		$req = $this->db->query($sql);
 
-		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
-			$listeVilles[]= new Ville($ville);
+		while ($parcour = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeParcours[]= new Parcours($parcour);
 		}
-
-		return $listeVilles;
+		return $listeParcours;
 		$req -> closeCursor();
 	}
 */
