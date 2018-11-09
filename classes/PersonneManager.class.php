@@ -20,5 +20,9 @@ class PersonneManager{
 		
 		$req->execute();
 	}
+	public function getList(){
+		$listePersonne=array();
+		$sql='SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num';
+	}
 	
 }
