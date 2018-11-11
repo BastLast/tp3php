@@ -41,7 +41,7 @@ class Salarie{
 	public function getDepNum(){
 		return $this->sal_telprof;
 	}
-	public function getfonnum(){
+	public function getFonNum(){
 		return $this->fon_num;
 	}
 
