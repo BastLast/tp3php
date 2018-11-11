@@ -52,17 +52,17 @@ class Personne{
 		$this->per_mail=$perMail;
 	}
 	public function setPerLogin($perLogin){
-		$this->per_Login=$perLogin;
+		$this->per_login=$perLogin;
 	}
 	public function setPerPwd($perPwd){
-		$this->per_Pwd=$perPwd;
+		$this->per_pwd=$perPwd;
 	}
 
 	public function getPerNum(){
-		return $this->per_Num;
+		return $this->per_num;
 	}
 	public function getPerNom(){
-		return $this->per_Nom;
+		return $this->per_nom;
 	}
 	public function getPerPrenom(){
 		return $this->per_prenom;
@@ -74,9 +74,9 @@ class Personne{
 		return $this->per_mail;
 	}
 	public function getPerLogin(){
-		return $this->per_Login;
+		return $this->per_login;
 	}
-	public function getPerPdw(){
+	public function getPerPwd(){
 		return $this->per_pwd;
 	}
 }
