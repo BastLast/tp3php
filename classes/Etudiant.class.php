@@ -27,7 +27,7 @@ class Etudiant{
 	public function setPerNum($perNum){
 		$this->per_num=$perNum;
 	}
-	public function setdep_num($depNum){
+	public function setDep_num($depNum){
 		$this->dep_num=$depNum;
 	}
 	public function setDivNum($divnum){
