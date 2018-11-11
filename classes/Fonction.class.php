@@ -29,11 +29,11 @@ class Fonction{
 	}
 
 
-	public function getfonNum(){
+	public function getFonNum(){
 		return $this->fon_num;
 	}
 
-		public function getfonLib(){
+		public function getFonLib(){
 			return $this->fon_libelle;
 		}
 
