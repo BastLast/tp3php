@@ -22,49 +22,57 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 	</form>
 
 	<?php
-}else{ // c'est la deuxieme fois que la page est appelée
+}else{
 
-	if($_POST['type']== "personnel"){
-		// la personne a ajouter fait partie du personnel
-		?>
-		<form id="FormPersonnel">
-			Telephone professionnel: <input type="text" id="telpro">
-			Fonction: <select name="fonction">
-				<?php
-				$listeFonctions = $fonctionManager->getList();
-				foreach ($listeFonctions as $fonction) {
-					echo '<option value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
-				}
-				?>
-			</select>
-			<input type="submit" value="Valider">
-		</form>
-		<?php
+	if(!empty($_POST["type"])){
+		// c'est la deuxieme fois que la page est appelée
+
+		if($_POST['type']== "personnel"){
+			// la personne a ajouter fait partie du personnel
+			?>
+			<form id="FormPersonnel" method="post">
+				Telephone professionnel: <input type="text" id="telpro">
+				Fonction: <select name="fonction">
+					<?php
+					$listeFonctions = $fonctionManager->getList();
+					foreach ($listeFonctions as $fonction) {
+						echo '<option value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
+					}
+					?>
+				</select>
+				<input type="submit" value="Valider">
+			</form>
+			<?php
+		}
+
+		if($_POST['type']== "etudiant"){
+			//la personne a ajouter est un etudiant
+			?>
+			<form id="FormEtudiant" method="post">
+				Annee: <select name="annee">
+					<?php
+					$listeDivisions = $divisionManager->getList();
+					foreach ($listeDivisions as $division) {
+						echo '<option value="'.$division->getDivNum().'">'.$division->getDivNom().'</option>';
+					}
+					?>
+				</select>
+				Departement: <select name="dep">
+					<?php
+					$listeDepartements = $departementManager->getList();
+					foreach ($listeDepartements as $departement) {
+						echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
+					}
+					?>
+				</select>
+				<input type="submit" value="Valider">
+			</form>
+			<?php
+		}
 	}
+	else{ // il s'agit du troisieme à la page.
 
-	if($_POST['type']== "etudiant"){
-		//la personne a ajouter est un etudiant
-		?>
-		<form>
-			Annee: <select name="annee">
-				<?php
-				$listeDivisions = $divisionManager->getList();
-				foreach ($listeDivisions as $division) {
-					echo '<option value="'.$division->getDivNum().'">'.$division->getDivNom().'</option>';
-				}
-				?>
-			</select>
-			Departement: <select name="dep">
-				<?php
-				$listeDepartements = $departementManager->getList();
-				foreach ($listeDepartements as $departement) {
-					echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
-				}
-				?>
-			</select>
-			<input type="submit" value="Valider">
-		</form>
-		<?php
+		?>TEST<?php
 	}
 }
 ?>
