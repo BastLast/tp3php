@@ -30,7 +30,6 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			Fonction: <select name="fonction">
 				<?php
 				$listeFonctions = $fonctionManager->getList();
-
 				foreach ($listeFonctions as $fonction) {
 					echo '<option value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
 				}

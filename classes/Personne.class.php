@@ -7,17 +7,17 @@ class Personne{
 	private $per_mail;
 	private $per_login;
 	private $per_pwd;
-	
+
 	public function __construct($valeur = array()){
 		if (!empty($valeur)){
 			$this ->affecte($valeur);
 		}
-		
+
 	}
-	
-	public function affecte($donees){
+
+	public function affecte($donnees){
 		foreach($donnees as $attribut =>$valeur){
-			
+
 			switch($attribut){
 				case 'per_num': $this->setPerNum($valeur);
 				break;
@@ -57,7 +57,7 @@ class Personne{
 	public function setPerPwd($perPwd){
 		$this->per_Pwd=$perPwd;
 	}
-	
+
 	public function getPerNum(){
 		return $this->per_Num;
 	}

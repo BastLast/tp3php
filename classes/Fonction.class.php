@@ -10,7 +10,7 @@ class Fonction{
 
 	}
 
-	public function affecte($donees){
+	public function affecte($donnees){
 		foreach($donnees as $attribut =>$valeur){
 
 			switch($attribut){
