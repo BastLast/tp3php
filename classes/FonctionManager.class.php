@@ -19,24 +19,4 @@ class FonctionManager{
 		$req -> closeCursor();
 	}
 
-	//fonction permetant de compter le nombre de fonctions
-	public function countFonctions(){
-		$resu = array();
-		$sql = 	'SELECT count(fon_num) as total FROM fonction';
-		$req = $this->db->query($sql);
-		$resu = $req->fetch(PDO::FETCH_OBJ);
-		$nbFonction = $resu->total;
-
-		return $nbFonction;
-		$req -> closeCursor();
-	}
-
-	public function getFonctionById($id){
-			$sql = 	"SELECT fon_libelle  FROM fonction where fon_num = $id";
-			$req = $this->db->query($sql);
-			$resu = $req->fetch(PDO::FETCH_OBJ);
-			return $resu;
-			$req -> closeCursor();
-	}
-
 }
