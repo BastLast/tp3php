@@ -25,7 +25,7 @@ class Fonction{
 		$this->fon_num=$fonNum;
 	}
 	public function setFonLib($fonLib){
-		$this->fon_libelle=$fonnum;
+		$this->fon_libelle=$fonLib;
 	}
 
 
