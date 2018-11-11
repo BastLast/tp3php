@@ -36,7 +36,7 @@ class Etudiant{
 
 
 	public function getPerNum(){
-		return $this->per_Num;
+		return $this->per_num;
 	}
 	public function getDepNum(){
 		return $this->dep_num;
