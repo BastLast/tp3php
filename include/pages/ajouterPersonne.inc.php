@@ -4,6 +4,8 @@
 $db=new Mypdo();
 $personneManager=new PersonneManager($db);
 $fonctionManager =new FonctionManager($db);
+$divisionManager =new DivisionManager($db);
+$departementManager =new DepartementManager($db);
 if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 	?>
 
@@ -46,15 +48,17 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		<form>
 			Annee: <select name="annee">
 				<?php
-				foreach ($listeAnnee as $annee) {
-					echo '<option value="'.$annee->getNumAnnee().'">'.$annee->getNomAnnee().'</option>';
+				$listeDivisions = $divisionManager->getList();
+				foreach ($listeDivisions as $division) {
+					echo '<option value="'.$division->getDivNum().'">'.$division->getDivNom().'</option>';
 				}
 				?>
 			</select>
 			Departement: <select name="dep">
 				<?php
-				foreach ($listeDep as $dep) {
-					echo '<option value="'.$dep->getNumDep().'">'.$dep->getNomDep().'</option>';
+				$listeDepartements = $departementManager->getList();
+				foreach ($listeDepartements as $departement) {
+					echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
 				}
 				?>
 			</select>

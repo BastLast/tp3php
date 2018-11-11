@@ -1,5 +1,5 @@
 <?php
-class Etudiant{
+class Departement{
 	private $dep_num;
 	private $dep_nom;
 	private $vil_num;
@@ -17,7 +17,7 @@ class Etudiant{
 			switch($attribut){
 				case 'dep_num': $this->setDepNum($valeur);
 				break;
-				case 'dep_num': $this->setDepNom($valeur);
+				case 'dep_nom': $this->setDepNom($valeur);
 				break;
 				case 'vil_num': $this->setVilNum($valeur);
 				break;
@@ -28,20 +28,20 @@ class Etudiant{
 	public function setDepNum($depNum){
 		$this->dep_num=$depNum;
 	}
-	public function setDepNom($depNum){
-		$this->dep_num=$depNom;
+	public function setDepNom($depNom){
+		$this->dep_nom=$depNom;
 	}
-	public function setDepNum($vilNum){
-		$this->dep_num=$depnum;
+	public function setVilNum($vilNum){
+		$this->vil_num=$vilNum;
 	}
 
 	public function getDepNum(){
 		return $this->dep_num;
 	}
 	public function getDepNom(){
-		return $this->dep_Nom;
+		return $this->dep_nom;
 	}
-	public function getvilNum(){
+	public function getVilNum(){
 		return $this->vil_num;
 	}
 
