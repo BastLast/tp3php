@@ -21,4 +21,7 @@ Actuellement
 			<td><?php echo $personne ->getPerPrenom()?></td>
 		</tr>
 	</table>
+	<?php if($_POST){
+		
+	}
 <?php } ?>

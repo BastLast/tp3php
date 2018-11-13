@@ -18,5 +18,13 @@ class DepartementManager{
 		return $listeDepartements;
 		$req -> closeCursor();
 	}
+	public function getDeppartementById($id){
+		$sql="SELECT dep_nom FROM departement where dep_num=$id"
+		$req=$this->db->query($sql);
+		
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return $res;
+		$req->closeCursor();
+	}
 
 }
