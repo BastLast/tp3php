@@ -25,4 +25,24 @@ class PersonneManager{
 		$sql='SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num';
 	}
 
+	public function getPersonneByLogin($login){
+		$req=$this ->db->prepare
+		("SELECT per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd  FROM personne where per_login = :login");
+		$req ->bindValue(':login',$login,PDO::PARAM_STR);
+		$req->execute();
+		$resu = $req->fetch(PDO::FETCH_OBJ);
+		return $resu;
+		$req -> closeCursor();
+	}
+
+	public function checkPassword($mdpSaisi){
+		$salt = "48@!asld";
+		$password = sha1(sha1($mdpSaisi).$salt);
+		if ($password == $this -> getPerPwd()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }
