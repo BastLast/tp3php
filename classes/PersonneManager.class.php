@@ -35,14 +35,4 @@ class PersonneManager{
 		$req -> closeCursor();
 	}
 
-	public function checkPassword($mdpSaisi){
-		$salt = "48@!asld";
-		$password = sha1(sha1($mdpSaisi).$salt);
-		if ($password == $this -> getPerPwd()) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
 }

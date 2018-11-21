@@ -79,4 +79,15 @@ class Personne{
 	public function getPerPwd(){
 		return $this->per_pwd;
 	}
+
+	public function checkPassword($mdpSaisi){
+		$salt = "48@!asld";
+		$password = sha1(sha1($mdpSaisi).$salt);
+		if ($password == $this-> getPerPwd()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }
