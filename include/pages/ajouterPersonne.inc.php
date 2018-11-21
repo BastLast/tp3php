@@ -82,20 +82,20 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		}
 	}
 	else{ // il s'agit du troisieme à la page.
-
+		$password = sha1(sha1($_SESSION['pdp']).SALT);
 		$personne = new Personne(
 			array('per_nom' => $_SESSION['nom'],
 			'per_prenom' => $_SESSION['prenom'],
 			'per_tel' => $_SESSION['tel'],
 			'per_mail' => $_SESSION['mail'],
 			'per_login' => $_SESSION['login'],
-			'per_pwd' => $_SESSION['pdp'])
+			'per_pwd' => $password)
 		);
-			print_r($_SESSION);
-			?>
-<br>
-<br>
-			<?php
+		print_r($_SESSION);
+		?>
+		<br>
+		<br>
+		<?php
 		print_r($personne);
 		$personneManager -> addPersonne($personne);
 
@@ -110,7 +110,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			print_r($salarie);
 			$salarieManager -> addSalarie($salarie);
 		}
-		if($_SESSION['type']== "etudiant"){// on doit enregistrer un nouvel étudiant
+		if($_SESSION['type']== "etudiant"){ // on doit enregistrer un nouvel étudiant
 			$etudiant = new Etudiant(
 				array('per_num' => $id,
 				'dep_num' => $_POST['dep'],
