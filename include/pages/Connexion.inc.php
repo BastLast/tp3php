@@ -1,5 +1,7 @@
 <h1>Pour vous connecter</h1>
 <?php
+$db=new Mypdo();
+$personneManager= new PersonneManager($db);
 if (empty($_POST)){
   ?>
   <form action="#" id="FormLogin" method="post">
@@ -26,10 +28,28 @@ if (empty($_POST)){
 }else{
   ?>
   <?php
-  if ($_POST['captcha']!=$_SESSION['verifCaptcha']) {
-    echo "pas bon";
-  }else {
-    echo "ok";
+  if ($_POST['captcha']!=$_SESSION['verifCaptcha']) { // le captcha est invalide
+    ?>
+    <img src="image/erreur.png" alt="connexion echouee">
+    Captcha incorrect !
+    <a href="index.php?page=11">
+      <button type="button" name="Reessayer">Reessayer</button>
+    </a>
+    <?php
+  }else { // le captcha est OK
+    $personne = new Personne($personneManager->getPersonneByLogin($_POST['login']));
+    if($personne -> checkPassword($_POST['password'])){
+      // le mot de passe est OK
+      echo 1;
+    }else{
+      // le mot de passe n'est pas OK
+      ?>
+      <img src="image/erreur.png" alt="connexion echouee">
+      Login ou Mot de passe incorrect !
+      <?php
+    }
+
+
   }
 }
 ?>
