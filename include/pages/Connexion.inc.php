@@ -7,8 +7,9 @@ if (empty($_POST)){
     Mot de passe:<input type="password" name="password" size="4">
 
     <?php
-    $nb1 = rand(1 , 9);
     $nb2 = rand(1 , 9);
+    $nb1 = rand(1 , 9);
+    $_SESSION['verifCaptcha'] = $nb1 + $nb2;
     ?>
     <img src=<?php echo "image/nb/$nb1.jpg" ?> alt="captcha1">
     +
@@ -25,17 +26,10 @@ if (empty($_POST)){
 }else{
   ?>
   <?php
-  $ville = new Ville($_POST);
-  $db = new Mypdo();
-  $villeManager = new VilleManager($db);
-
-  $villeManager -> addVille($ville);
-
-  ?>
-  <img src="image/valid.png" alt="confirmation validee">
-  La ville "<b><?php
-  echo $_POST["vil_nom"];
-  ?></b>" a bien été ajoutée
-  <?php
+  if ($_POST['captcha']!=$_SESSION['verifCaptcha']) {
+    echo "pas bon";
+  }else {
+    echo "ok";
+  }
 }
 ?>
