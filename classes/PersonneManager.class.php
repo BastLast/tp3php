@@ -43,4 +43,14 @@ class PersonneManager{
 		$req-> closeCursor();
 	}
 
+	public function getPersonneByLogin($login){
+		$req=$this ->db->prepare
+		("SELECT per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd  FROM personne where per_login = :login");
+		$req ->bindValue(':login',$login,PDO::PARAM_STR);
+		$req->execute();
+		$resu = $req->fetch(PDO::FETCH_OBJ);
+		return $resu;
+		$req -> closeCursor();
+	}
+
 }

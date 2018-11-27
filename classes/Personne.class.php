@@ -79,4 +79,16 @@ class Personne{
 	public function getPerPwd(){
 		return $this->per_pwd;
 	}
+
+//cette fonction renvoi true si le mot de passe saisie est le meme que celui enregistre
+	public function checkPassword($mdpSaisi){
+
+		$password = sha1(sha1($mdpSaisi).SALT);
+		if ($password == $this-> getPerPwd()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }
