@@ -33,8 +33,8 @@ class Fonction{
 		return $this->fon_num;
 	}
 
-		public function getFonLib(){
-			return $this->fon_libelle;
-		}
+	public function getFonLib(){
+		return $this->fon_libelle;
+	}
 
 }
