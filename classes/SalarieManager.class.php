@@ -16,5 +16,17 @@ class SalarieManager{
 
 		$req->execute();
 	}
-
+	public function getSalarieById($id){
+		if(!is_null($id)){
+		
+		$req=$this->db->prepare(
+			'SELECT * FROM salarie where per_num= :id'
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return new Salarie($res);
+		$req->closeCursor();
+		}
+	}
 }
