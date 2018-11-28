@@ -55,12 +55,12 @@ class PersonneManager{
 	
 	public function estEtudiant($id){
 		
-		if(!is_null($idPersonne)){
+		if(!is_null($id)){
 
-			$req = $this->db->prepare('SELECT per_num FROM etudiant WHERE per_num = $id');
-
-			
-
+			$req = $this->db->prepare(
+			'SELECT per_num FROM etudiant WHERE per_num = :id'
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
 		 	$req->execute();
 
 			return $req->fetch(PDO::FETCH_OBJ);
@@ -69,6 +69,19 @@ class PersonneManager{
 		} else {
 			return FALSE;
 		}
+	}
+	public function getPersonneById($id){
+		if(!is_null($id))
+		
+		$req=$this->db->prepare(
+			'SELECT * FROM personne where per_num= :id'
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+	
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return new Personne($res);
+		$req->closeCursor();
 	}
 
 }
