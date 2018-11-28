@@ -40,7 +40,7 @@ if (empty($_POST)){
     $personne = new Personne($personneManager->getPersonneByLogin($_POST['login']));
     if($personne -> checkPassword($_POST['password'])){
       // le mot de passe est OK
-      echo 1;
+      $_SESSION['co'] = 1;
     }else{
       // le mot de passe n'est pas OK
       ?>
