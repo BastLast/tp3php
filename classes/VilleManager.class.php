@@ -44,10 +44,14 @@ class VilleManager{
 	}
 
 	public function getVilleById($id){
-			$sql = 	"SELECT vil_nom  FROM ville where vil_num = $id";
-			$req = $this->db->query($sql);
-			$resu = $req->fetch(PDO::FETCH_OBJ);
-			return $resu;
+			
+			$req = $this->db->prepare(
+			"SELECT *  FROM ville where vil_num = :id"
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
+			$res = $req->fetch(PDO::FETCH_OBJ);
+			return new Ville($res);
 			$req -> closeCursor();
 	}
 
