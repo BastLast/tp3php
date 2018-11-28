@@ -47,7 +47,7 @@ if (empty($_POST)){
     $personne = new Personne($personneManager->getPersonneByLogin($_POST['login']));
     if($personne -> checkPassword($_POST['password'])){
       // le mot de passe est OK
-      $_SESSION['co'] = 1;
+      $_SESSION['co'] = $personne->getPerLogin();
       ?>
       <h1>Connexion Réussie</h1>
       Vous allez etre redirigé dans 2 secondes !

@@ -30,6 +30,10 @@
       <?php
       if(isset($_SESSION['co'])){
         ?>
+        Utilisateur :
+        <?php
+        echo $_SESSION['co'];
+        ?>
         <a href="index.php?page=12">Déconnexion</a>
         <?php
       }else{
