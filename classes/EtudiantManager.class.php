@@ -16,4 +16,18 @@ class EtudiantManager{
 
 		$req->execute();
 	}
+	
+	public function getEtudiantById($id){
+		if(!is_null($id))
+		
+		$req=$this->db->prepare(
+			'SELECT * FROM etudiant where per_num= :id'
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return new Etudiant($res);
+		$req->closeCursor();
+	}
+	
 }
