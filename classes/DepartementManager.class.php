@@ -18,12 +18,15 @@ class DepartementManager{
 		return $listeDepartements;
 		$req -> closeCursor();
 	}
-	public function getDeppartementById($id){
-		$sql="SELECT dep_nom FROM departement where dep_num=$id"
-		$req=$this->db->query($sql);
+	public function getDepartementById($id){
 		
+		$req=$this->db->prepare(
+		'SELECT * FROM departement where dep_num = :id'
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
 		$res=$req->fetch(PDO::FETCH_OBJ);
-		return $res;
+		return new Departement($res);
 		$req->closeCursor();
 	}
 
