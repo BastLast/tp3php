@@ -52,5 +52,23 @@ class PersonneManager{
 		return $resu;
 		$req -> closeCursor();
 	}
+	
+	public function estEtudiant($id){
+		
+		if(!is_null($idPersonne)){
+
+			$req = $this->db->prepare('SELECT per_num FROM etudiant WHERE per_num = $id');
+
+			
+
+		 	$req->execute();
+
+			return $req->fetch(PDO::FETCH_OBJ);
+
+			$req->closeCursor();
+		} else {
+			return FALSE;
+		}
+	}
 
 }
