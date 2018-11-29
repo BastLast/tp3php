@@ -1,7 +1,20 @@
 <?php
 require_once("include/autoLoad.inc.php");
 require_once("include/config.inc.php");
-$pdo = new Mypdo();
+
+
+$db = new Mypdo();
+$personneManager=new PersonneManager($db);
+$etudiantManager= new EtudiantManager($db);
+$salarieManager=new SalarieManager($db);
+$fonctionManager=new FonctionManager($db);
+$departementManager=new DepartementManager($db);
+$villeManager=new VilleManager($db);
+$divisionManager=new DivisionManager($db);
+$parcoursManager=new ParcoursManager($db);
+$proposeManager=new ProposeManager($db);
+
+
 require_once("include/header.inc.php");
 
 ?>
