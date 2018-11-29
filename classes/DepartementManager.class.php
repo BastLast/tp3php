@@ -18,10 +18,11 @@ class DepartementManager{
 		return $listeDepartements;
 		$req -> closeCursor();
 	}
+
+//cette fonction renvoi un departement en fonction d'une id
 	public function getDepartementById($id){
-		
 		$req=$this->db->prepare(
-		'SELECT * FROM departement where dep_num = :id'
+			'SELECT * FROM departement where dep_num = :id'
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		$req->execute();

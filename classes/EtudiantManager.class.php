@@ -16,10 +16,11 @@ class EtudiantManager{
 
 		$req->execute();
 	}
-	
+
+	//cette fonction permet de récuperer un etudiant en fonction d'une id
 	public function getEtudiantById($id){
 		if(!is_null($id))
-		
+
 		$req=$this->db->prepare(
 			'SELECT * FROM etudiant WHERE per_num= :id'
 		);
@@ -29,15 +30,16 @@ class EtudiantManager{
 		return new Etudiant($res);
 		$req->closeCursor();
 	}
-	
+
+//cette fonction permet de supprimer un étudiant
 	public function supEtudiant($id){
 		$requ=$this->db->prepare(
 			'SELECT * FROM etudiant WHERE per_num = :id'
-			
+
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		$req->execute();
 		$req->closeCursor;
 	}
-	
+
 }

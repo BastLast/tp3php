@@ -6,7 +6,7 @@ class DivisionManager{
 
 	//fonction permetant de lister toutes les divisions
 	public function getList(){
-
+// à passer en requete préparée
 		$listeDivisions = array();
 		$sql = 	'SELECT div_num,div_nom FROM division ORDER BY div_nom';
 		$req = $this->db->query($sql);
@@ -18,9 +18,11 @@ class DivisionManager{
 		return $listeDivisions;
 		$req -> closeCursor();
 	}
+
+	//cette fonction permet de récuperer une division en fonction d'une id
 	public function getDivisionById($id){
 		if(!is_null($id))
-		
+
 		$req=$this->db->prepare(
 			'SELECT * FROM division where num_num=$id'
 		);

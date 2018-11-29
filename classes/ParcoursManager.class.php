@@ -19,7 +19,7 @@ class ParcoursManager{
 
 	//fonction permetant de lister toutes les parcours
 	public function getList(){
-
+// à passer en requete préparée
 		$listeParcours = array();
 		$sql = 	'SELECT par_num,vil_num1,vil_num2,par_km FROM parcours
 		ORDER BY par_num';

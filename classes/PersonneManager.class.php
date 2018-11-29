@@ -31,9 +31,8 @@ class PersonneManager{
 		while($personne=$req->fetch(PDO::FETCH_OBJ)){
 			$listePersonne[]=new Personne($personne);
 		}
-		
+
 		var_dump($listePersonne);
-		
 		return $listePersonne;
 		$req->closeCursor();
 	}
@@ -48,6 +47,7 @@ class PersonneManager{
 		$req-> closeCursor();
 	}
 
+//fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneByLogin($login){
 		$req=$this ->db->prepare
 		("SELECT per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd  FROM personne where per_login = :login");
@@ -58,7 +58,9 @@ class PersonneManager{
 		$req -> closeCursor();
 	}
 
-	public function estEtudiant($id){
+//fonction permettant de verifier si une personne est un étudiant
+	public function estEtudiant($id){ //REFACTOR : on est pas censé avoir besoin de passer l'id en parametre !
+		//on peut la recuperer avec un this.getid ou un truc du genre
 
 		if(!is_null($id)){
 
@@ -73,6 +75,8 @@ class PersonneManager{
 			return FALSE;
 		}
 	}
+
+//fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneById($id){
 		if(!is_null($id))
 
