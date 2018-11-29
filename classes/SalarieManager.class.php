@@ -16,9 +16,11 @@ class SalarieManager{
 
 		$req->execute();
 	}
+
+	//fonction permettant de recuperer un salarie à partir d'une id
 	public function getSalarieById($id){
 		if(!is_null($id)){
-		
+
 		$req=$this->db->prepare(
 			'SELECT * FROM salarie where per_num= :id'
 		);
@@ -29,10 +31,12 @@ class SalarieManager{
 		$req->closeCursor();
 		}
 	}
+
+	//fonction permettant de supprimer un salarie
 	public function supSalarie($id){
 		$req=$this->db->prepare(
 			'DELETE FROM salarie WHERE per_num = :id'
-			
+
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		return $req->execute();

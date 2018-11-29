@@ -33,10 +33,10 @@ class PersonneManager{
 		while($personne=$req->fetch(PDO::FETCH_OBJ)){
 			$listePersonne[]=new Personne($personne);
 		}
-		var_dump($listePersonne);
 		return $listePersonne;
 		$req->closeCursor();
 	}
+
 	//fonction permettant de compter le nombre de personne
 	public function countPersonne(){
 		$res=array();
@@ -79,7 +79,7 @@ class PersonneManager{
 
 //fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneById($id){
-		if(!is_null($id))
+		if(!is_null($id)) //REFACTOR : wtf ? à quoi sert ce test ?
 
 		$req=$this->db->prepare(
 			'SELECT * FROM personne where per_num= :id'
