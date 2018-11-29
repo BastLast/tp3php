@@ -1,7 +1,5 @@
 
 <?php
-$db=new Mypdo();
-$personneManager= new PersonneManager($db);
 if (empty($_POST)){
   if(isset($_SESSION['co'])){
     ?>

@@ -1,7 +1,4 @@
 <h1>Liste des villes</h1>
-<?php
-$db = new Mypdo();
-$villeManager = new VilleManager($db);?>
 Actuellement
 <?php echo $villeManager->countVilles() ?>
  villes sont enregistrées
