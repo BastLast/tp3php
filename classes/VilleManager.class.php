@@ -26,6 +26,8 @@ class VilleManager{
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeVilles[]= new Ville($ville);
 		}
+		return $listeVilles;
+		$req -> closeCursor();
 	}
 
 	//fonction permetant de lister toutes les villes référencées dans la table parcours
