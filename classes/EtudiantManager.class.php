@@ -31,12 +31,12 @@ class EtudiantManager{
 	}
 	
 	public function supEtudiant($id){
-		$requ=$this->db->prepare(
-			'SELECT * FROM etudiant WHERE per_num = :id'
+		$req=$this->db->prepare(
+			'DELETE FROM etudiant WHERE per_num = :id'
 			
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		$req->execute();
+		return $req->execute();
 		$req->closeCursor;
 	}
 	
