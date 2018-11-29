@@ -38,11 +38,11 @@ class Salarie{
 	public function getPerNum(){
 		return $this->per_num;
 	}
-	public function getDepNum(){
+	public function getTelProf(){
 		return $this->sal_telprof;
 	}
 	public function getFonNum(){
 		return $this->fon_num;
 	}
-
+	
 }

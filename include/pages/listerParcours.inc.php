@@ -28,5 +28,5 @@ Actuellement
       <td><?php echo $ville2->getNomVille(); ?></td>
       <td><?php echo $parcour->getParKm() ?></td>
     </tr>
-  </table>
-<?php } ?>
+	<?php } ?>
+</table>

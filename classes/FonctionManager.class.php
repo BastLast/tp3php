@@ -18,5 +18,18 @@ class FonctionManager{
 		return $listeFonctions;
 		$req -> closeCursor();
 	}
-
+	public function getFonctionById($id){
+		if(!is_null($id)){
+		
+		$req=$this->db->prepare(
+		'SELECT * FROM fonction where fon_num = :id'
+		);
+		
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return new Fonction($res);
+		$req->closeCursor();
+		}
+	}
 }

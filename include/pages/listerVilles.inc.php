@@ -19,5 +19,5 @@ Actuellement
       <td><?php echo $ville->getNumVille() ?></td>
       <td><?php echo $ville->getNomVille() ?></td>
     </tr>
-</table>
 <?php } ?>
+</table>

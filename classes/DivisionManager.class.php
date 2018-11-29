@@ -18,5 +18,17 @@ class DivisionManager{
 		return $listeDivisions;
 		$req -> closeCursor();
 	}
+	public function getDivisionById($id){
+		if(!is_null($id))
+		
+		$req=$this->db->prepare(
+			'SELECT * FROM division where num_num=$id'
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$res=$req->fetch(PDO::FETCH_OBJ);
+		return $res;
+		$req->closeCursor();
+	}
 
 }
