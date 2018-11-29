@@ -60,6 +60,7 @@ Actuellement
 			
 			<th>Nom</th>
 			<th>Prenom</th>
+			<th>Tel</th>
 			
 		<?php if($personneManager->estEtudiant($_GET["num"])){ ?>
 		
@@ -67,7 +68,7 @@ Actuellement
 			<th>Ville</th>
 			
 		<?php }else{ ?>
-		
+			
 			<th>Tel pro</th>
 			<th>Fonction</th>
 			
@@ -80,6 +81,7 @@ Actuellement
 			
 				<td><?php echo $personne ->getPerNom();?></td>
 				<td><?php echo $personne ->getPerPrenom();?></td>
+				<td><?php echo $personne ->getPerTel();?></td>
 				
 			<?php if($personneManager->estEtudiant($_GET["num"])){ ?>
 				
@@ -87,7 +89,7 @@ Actuellement
 				<td><?php echo $ville->getNomVille();?></td>
 			
 			<?php }else{ ?>
-			
+				
 				<td><?php echo $salarie ->getTelProf();?></td>
 				<td><?php echo $fonction->getFonLib();?></td>
 				
