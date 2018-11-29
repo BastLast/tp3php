@@ -19,13 +19,17 @@ class PersonneManager{
 
 		$req->execute();
 	}
-	
+
 	//fonction permettant de lister toutes les personnes
 	public function getList(){
+
+			$req = $this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num');
+			$req->execute();
+			$req->fetch(PDO::FETCH_OBJ);
+			
 		$listePersonne=array();
-		$sql='SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num';
+
 		$req=$this->db->query($sql);
-		
 		while($personne=$req->fetch(PDO::FETCH_OBJ)){
 			$listePersonne[]=new Personne($personne);
 		}
@@ -35,8 +39,8 @@ class PersonneManager{
 	//fonction permettant de compter le nombre de personne
 	public function countPersonne(){
 		$res=array();
-		$sql='SELECT count(per_num) as total FROM personne';
-		$req=$this->db->query($sql);
+		("SELECT count(per_num) as total FROM personne");
+		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$nbPersonne=$res->total;
 		return $nbPersonne;
@@ -52,19 +56,13 @@ class PersonneManager{
 		return $resu;
 		$req -> closeCursor();
 	}
-	
+
 	public function estEtudiant($id){
-		
+
 		if(!is_null($idPersonne)){
-
 			$req = $this->db->prepare('SELECT per_num FROM etudiant WHERE per_num = $id');
-
-			
-
 		 	$req->execute();
-
 			return $req->fetch(PDO::FETCH_OBJ);
-
 			$req->closeCursor();
 		} else {
 			return FALSE;

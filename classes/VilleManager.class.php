@@ -26,6 +26,18 @@ class VilleManager{
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeVilles[]= new Ville($ville);
 		}
+	}
+
+	//fonction permetant de lister toutes les villes référencées dans la table parcours
+	public function getListReferenced(){
+
+		$listeVilles = array();
+		$sql = 	'SELECT vil_nom , vil_num FROM ville ORDER BY vil_nom';
+		$req = $this->db->query($sql);
+
+		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilles[]= new Ville($ville);
+		}
 
 		return $listeVilles;
 		$req -> closeCursor();
@@ -44,11 +56,11 @@ class VilleManager{
 	}
 
 	public function getVilleById($id){
-			$sql = 	"SELECT vil_nom  FROM ville where vil_num = $id";
-			$req = $this->db->query($sql);
-			$resu = $req->fetch(PDO::FETCH_OBJ);
-			return $resu;
-			$req -> closeCursor();
+		$sql = 	"SELECT vil_nom  FROM ville where vil_num = $id";
+		$req = $this->db->query($sql);
+		$resu = $req->fetch(PDO::FETCH_OBJ);
+		return $resu;
+		$req -> closeCursor();
 	}
 
 }
