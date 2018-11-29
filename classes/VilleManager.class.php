@@ -20,8 +20,8 @@ class VilleManager{
 	public function getList(){
 
 		$listeVilles = array();
-		$sql = 	'SELECT vil_nom , vil_num FROM ville ORDER BY vil_nom';
-		$req = $this->db->query($sql);
+		$req = $this->db->prepare('SELECT vil_nom , vil_num FROM ville ORDER BY vil_nom');
+		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeVilles[]= new Ville($ville);
@@ -48,25 +48,25 @@ class VilleManager{
 	//fonction permetant de compter le nombre de villes
 	public function countVilles(){
 		$resu = array();
-		$sql = 	'SELECT count(vil_num) as total FROM ville';
-		$req = $this->db->query($sql);
+		$req = $this->db->prepare('SELECT count(vil_num) as total FROM ville');
+		$req->execute();
 		$resu = $req->fetch(PDO::FETCH_OBJ);
 		$nbVille = $resu->total;
-
 		return $nbVille;
 		$req -> closeCursor();
 	}
 
+//fonction permettant de recuperer une ville à partir d'une id
 	public function getVilleById($id){
 
-			$req = $this->db->prepare(
+		$req = $this->db->prepare(
 			"SELECT *  FROM ville where vil_num = :id"
-			);
-			$req->bindValue(':id',$id,PDO::PARAM_STR);
-			$req->execute();
-			$res = $req->fetch(PDO::FETCH_OBJ);
-			return new Ville($res);
-			$req -> closeCursor();
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$res = $req->fetch(PDO::FETCH_OBJ);
+		return new Ville($res);
+		$req -> closeCursor();
 
 	}
 

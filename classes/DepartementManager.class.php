@@ -4,12 +4,13 @@ class DepartementManager{
 		$this->db = $db;
 	}
 
+
+
 	//fonction permetant de lister tous les departements
 	public function getList(){
-// à passer en requete préparée
 		$listeDepartements = array();
-		$sql = 	'SELECT dep_num,dep_nom,vil_num FROM departement ORDER BY dep_nom';
-		$req = $this->db->query($sql);
+		$req = $this->db->prepare('SELECT dep_num,dep_nom,vil_num FROM departement ORDER BY dep_nom');
+		$req->execute();
 
 		while ($departement = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeDepartements[]= new Departement($departement);
@@ -19,7 +20,7 @@ class DepartementManager{
 		$req -> closeCursor();
 	}
 
-//cette fonction renvoi un departement en fonction d'une id
+	//cette fonction renvoi un departement en fonction d'une id
 	public function getDepartementById($id){
 		$req=$this->db->prepare(
 			'SELECT * FROM departement where dep_num = :id'
