@@ -1,12 +1,4 @@
 <?php
-$db=new Mypdo();
-$personneManager=new PersonneManager($db);
-$etudiantManager= new EtudiantManager($db);
-$salarieManager=new SalarieManager($db);
-$fonctionManager=new FonctionManager($db);
-$departementManager=new DepartementManager($db);
-$villeManager=new VilleManager($db);
-
 if(!isset($_GET["num"])){
 ?>
 Actuellement 

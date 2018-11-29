@@ -1,12 +1,12 @@
 <?php
-$db=new Mypdo();
-$personne = new personneManager($db);
-$listePersonne = $personne->getList();
+$listePersonne = $personneManager->getList();
+
+
 
 if(empty($_get['num'])){
 ?>
 <h1>Personne enregistré</h2>
-<p>il y a actuellement <?php echo $personne->countPersonne() ?> enregistré<p>
+<p>il y a actuellement <?php echo $personneManager->countPersonne() ?> enregistré<p>
 
 <table>
 	<tr>
