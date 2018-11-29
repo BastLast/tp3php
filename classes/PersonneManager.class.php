@@ -26,7 +26,7 @@ class PersonneManager{
 			$req = $this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num');
 			$req->execute();
 			$req->fetch(PDO::FETCH_OBJ);
-			
+
 		$listePersonne=array();
 
 		$req=$this->db->query($sql);
@@ -58,19 +58,13 @@ class PersonneManager{
 	}
 
 	public function estEtudiant($id){
-<<<<<<< HEAD
 
-		if(!is_null($idPersonne)){
-			$req = $this->db->prepare('SELECT per_num FROM etudiant WHERE per_num = $id');
-=======
-		
 		if(!is_null($id)){
 
 			$req = $this->db->prepare(
 			'SELECT per_num FROM etudiant WHERE per_num = :id'
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
->>>>>>> 970c6e89a40deb5df9b6d9a564d16062fa003493
 		 	$req->execute();
 			return $req->fetch(PDO::FETCH_OBJ);
 			$req->closeCursor();
@@ -80,13 +74,13 @@ class PersonneManager{
 	}
 	public function getPersonneById($id){
 		if(!is_null($id))
-		
+
 		$req=$this->db->prepare(
 			'SELECT * FROM personne where per_num= :id'
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		$req->execute();
-	
+
 		$res=$req->fetch(PDO::FETCH_OBJ);
 		return new Personne($res);
 		$req->closeCursor();
