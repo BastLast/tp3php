@@ -91,5 +91,31 @@ class PersonneManager{
 		return new Personne($res);
 		$req->closeCursor();
 	}
+	
+	
+	public function supPersonne($id){
+		$db = new Mypdo();
+		$etudiantManager=new EtudiantManager($db);
+		$salarieManager=new SalarieManager($db);
+		
+		if(!is_null($id)){
+			
+		if($this->estEtudiant($id)){
+		echo $id;
+			$etudiantManager->supEtudiant($id);
+		} else {
+			
+			$salarieManager->supSalarie($id);
+		}
+		
+		$req=$this->db->prepare(
+			'DELETE FROM personne WHERE per_num = :id'	
+		);
+		
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		return $req->execute();
+		$req->closeCursor;
+		}
+	}
 
 }
