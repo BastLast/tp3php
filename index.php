@@ -13,7 +13,7 @@ $villeManager=new VilleManager($db);
 $divisionManager=new DivisionManager($db);
 $parcoursManager=new ParcoursManager($db);
 $proposeManager=new ProposeManager($db);
-
+$avisManager=new AvisManager($db);
 
 require_once("include/header.inc.php");
 
