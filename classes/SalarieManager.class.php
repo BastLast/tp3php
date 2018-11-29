@@ -29,4 +29,13 @@ class SalarieManager{
 		$req->closeCursor();
 		}
 	}
+	public function supSalarie($id){
+		$requ=$this->db->prepare(
+			'SELECT * FROM salarie WHERE per_num = :id'
+			
+		);
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->execute();
+		$req->closeCursor;
+	}
 }
