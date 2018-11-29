@@ -39,7 +39,8 @@ if(empty($_GET['num'])){
 		echo $personne->getPerNom()." ".$personne->getPerPrenom()." a bien été supprimé."; ?>
 		<input type="button" value="Continuer" onclick="location.href='index.php?page=4'" />
 		<input type="button" value="Menu" onclick="location.href='index.php?page=1'" />
-<?php
+
+		<?php
 } ?>
 
 
