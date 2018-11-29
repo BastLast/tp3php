@@ -29,17 +29,17 @@ class PersonneManager{
 
 		$listePersonne=array();
 
-		$req=$this->db->query($sql);
 		while($personne=$req->fetch(PDO::FETCH_OBJ)){
 			$listePersonne[]=new Personne($personne);
 		}
+		
 		return $listePersonne;
 		$req->closeCursor();
 	}
 	//fonction permettant de compter le nombre de personne
 	public function countPersonne(){
 		$res=array();
-		("SELECT count(per_num) as total FROM personne");
+		$req = $this->db->prepare("SELECT count(per_num) as total FROM personne");
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		$nbPersonne=$res->total;
