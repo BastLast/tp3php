@@ -30,12 +30,12 @@ class SalarieManager{
 		}
 	}
 	public function supSalarie($id){
-		$requ=$this->db->prepare(
-			'SELECT * FROM salarie WHERE per_num = :id'
+		$req=$this->db->prepare(
+			'DELETE FROM salarie WHERE per_num = :id'
 			
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		$req->execute();
+		return $req->execute();
 		$req->closeCursor;
 	}
 }

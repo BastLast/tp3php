@@ -38,7 +38,7 @@ class EtudiantManager{
 
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		$req->execute();
+		return $req->execute();
 		$req->closeCursor;
 	}
 

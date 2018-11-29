@@ -1,5 +1,7 @@
 <?php
+
 class PersonneManager{
+
 	public function __construct($db){
 		$this->db = $db;
 	}
@@ -31,7 +33,6 @@ class PersonneManager{
 		while($personne=$req->fetch(PDO::FETCH_OBJ)){
 			$listePersonne[]=new Personne($personne);
 		}
-
 		var_dump($listePersonne);
 		return $listePersonne;
 		$req->closeCursor();

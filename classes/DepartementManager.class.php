@@ -6,7 +6,7 @@ class DepartementManager{
 
 	//fonction permetant de lister tous les departements
 	public function getList(){
-
+// à passer en requete préparée
 		$listeDepartements = array();
 		$sql = 	'SELECT dep_num,dep_nom,vil_num FROM departement ORDER BY dep_nom';
 		$req = $this->db->query($sql);
