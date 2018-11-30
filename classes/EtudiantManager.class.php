@@ -33,8 +33,8 @@ class EtudiantManager{
 
 //cette fonction permet de supprimer un étudiant
 	public function supEtudiant($id){
-		$requ=$this->db->prepare(
-			'SELECT * FROM etudiant WHERE per_num = :id'
+		$req=$this->db->prepare(
+			'DELETE FROM etudiant WHERE per_num = :id'
 
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
