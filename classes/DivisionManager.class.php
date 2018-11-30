@@ -21,7 +21,7 @@ class DivisionManager{
 
 	//cette fonction permet de récuperer une division en fonction d'une id
 	public function getDivisionById($id){
-		if(!is_null($id))
+		if(isset($id))
 
 		$req=$this->db->prepare(
 			'SELECT * FROM division where num_num=$id'

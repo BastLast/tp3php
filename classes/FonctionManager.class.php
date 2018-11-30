@@ -20,7 +20,7 @@ class FonctionManager{
 
 	//cette fonction permet de recuperer une fonction à partir d'une id
 	public function getFonctionById($id){
-		if(!is_null($id)){
+		if(isset($id)){
 
 			$req=$this->db->prepare(
 				'SELECT * FROM fonction where fon_num = :id'

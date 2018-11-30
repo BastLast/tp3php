@@ -7,7 +7,7 @@ class ProposeManager{
 	
 	public function supPropose($id){
 		
-		if(!is_null($id)){
+		if(isset($id)){
 		
 		$req=$this->db->prepare(
 			'DELETE FROM propose WHERE per_num = :id'	

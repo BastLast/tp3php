@@ -7,7 +7,7 @@ class AvisManager{
 
 public function supAvis($id){
 		
-		if(!is_null($id)){
+		if(isset($id)){
 		
 		$req=$this->db->prepare(
 			'DELETE FROM avis WHERE per_num = :id || per_per_num= :id'	

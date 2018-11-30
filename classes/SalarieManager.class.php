@@ -19,7 +19,7 @@ class SalarieManager{
 
 	//fonction permettant de recuperer un salarie à partir d'une id
 	public function getSalarieById($id){
-		if(!is_null($id)){
+		if(isset($id)){
 
 		$req=$this->db->prepare(
 			'SELECT * FROM salarie where per_num= :id'

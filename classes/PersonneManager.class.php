@@ -63,7 +63,7 @@ class PersonneManager{
 	public function estEtudiant($id){ //REFACTOR : on est pas censé avoir besoin de passer l'id en parametre !
 		//on peut la recuperer avec un this.getid ou un truc du genre
 
-		if(!is_null($id)){
+		if(isset($id)){
 
 			$req = $this->db->prepare(
 			'SELECT per_num FROM etudiant WHERE per_num = :id'
@@ -79,7 +79,7 @@ class PersonneManager{
 
 //fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneById($id){
-		if(!is_null($id)) //REFACTOR : wtf ? à quoi sert ce test ?
+		if(isset($id)) //REFACTOR : wtf ? à quoi sert ce test ?
 
 		$req=$this->db->prepare(
 			'SELECT * FROM personne where per_num= :id'
@@ -98,7 +98,7 @@ class PersonneManager{
 		$etudiantManager=new EtudiantManager($db);
 		$salarieManager=new SalarieManager($db);
 		
-		if(!is_null($id)){
+		if(isset($id)){
 			
 		if($this->estEtudiant($id)){
 		echo $id;

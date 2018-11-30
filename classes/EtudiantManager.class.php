@@ -19,7 +19,7 @@ class EtudiantManager{
 
 	//cette fonction permet de récuperer un etudiant en fonction d'une id
 	public function getEtudiantById($id){
-		if(!is_null($id))
+		if(isset($id))
 
 		$req=$this->db->prepare(
 			'SELECT * FROM etudiant WHERE per_num= :id'

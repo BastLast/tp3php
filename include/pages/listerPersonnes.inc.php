@@ -1,5 +1,5 @@
 <?php
-if(!isset($_GET["num"])){
+if(empty($_GET["num"])){
 ?>
 Actuellement 
 <?php echo $personneManager->countPersonne();
