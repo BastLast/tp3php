@@ -43,14 +43,15 @@
       <br>
       <?php
       $date = date("Y-m-j"); // récuperation de la date du jour
-      echo '<input name="date" id="date" type="date" value="'.$date.'">'
+      echo '<input name="date" type="date" value="'.$date.'">'
       ?>
       Heure de départ :
       <br>
       <?php
       $heure = date("G:i:s"); // récuperation de l'heure du jour
-      echo '<input name="heure" id="date" type="time" value="'.$heure.'">'
+      echo '<input name="heure" type="time" value="'.$heure.'">'
       ?>
+      Nombre de place : <input name="places" type="text" size="4">
     </form>
 
 
