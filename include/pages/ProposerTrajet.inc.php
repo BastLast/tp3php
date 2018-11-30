@@ -15,8 +15,8 @@
       <select name="villeD" onChange='javascript:document.getElementById("FormVilleDepart").submit()'>
         <option value="Defaut">Choisissez une ville</option>
         <?php
-        $listeVilles = $villeManager->getListReferenced();
-        foreach ($listeVilles as $ville) {
+        $listeVillesReferenced = $villeManager->getListReferenced();
+        foreach ($listeVillesReferenced as $ville) {
           echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
         }
         ?>
@@ -24,7 +24,24 @@
       <?php
     }else{
       $_SESSION['villeD'] = $_POST['villeD'];
-      ?>Ville de départ : <?php
+      ?>Ville de départ :  <?php
+      $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
+      echo $villeD->getNomVille();
+      ?><p>Ville d'arrivée :</p>
+      <form action="#" id="FormProposeTrajet" method="post">
+        Ville de départ :
+        <select name="villeA">
+          <?php
+          $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
+          foreach ($listeVillesCompatible as $ville) {
+            echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+          }
+          ?>
+        </form>
+
+
+
+       <?php
 
 
 
