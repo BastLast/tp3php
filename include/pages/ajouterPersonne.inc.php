@@ -21,7 +21,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 
 	<?php
-	
+
 }else{ // ce n'est pas la premiere fois que la page est appelee
 
 
@@ -33,7 +33,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			// la personne a ajouter fait partie du personnel
 			?>
 			<form id="FormPersonnel" method="post">
-				Telephone professionnel: <input type="text" id="telpro">
+				Telephone professionnel: <input type="text" name="telpro">
 				Fonction: <select name="fonction">
 					<?php
 					$listeFonctions = $fonctionManager->getList();
@@ -48,7 +48,6 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		}
 
 		if($_POST['type']== "etudiant"){
-			$_SESSION = $_POST;
 			//la personne a ajouter est un etudiant
 			?>
 			<form id="FormEtudiant" method="post">
@@ -83,23 +82,21 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			'per_login' => $_SESSION['login'],
 			'per_pwd' => $password)
 		);
-		print_r($_SESSION);
+
 		?>
 		<br>
 		<br>
 		<?php
-		print_r($personne);
+
 		$personneManager -> addPersonne($personne);
 
 		$id = $db->lastInsertId(); // recuperation de l'id de la derniere personne enregistree
-		print_r($id);
 		if($_SESSION['type'] == "personnel"){// on doit enregistrer un nouveau membre du personnel
 			$salarie = new Salarie(
 				array('per_num' => $id,
 				'sal_telprof' => $_POST['telpro'],
 				'fon_num' => $_POST['fonction'])
 			);
-			print_r($salarie);
 			$salarieManager -> addSalarie($salarie);
 		}
 		if($_SESSION['type']== "etudiant"){ // on doit enregistrer un nouvel étudiant
@@ -108,7 +105,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 				'dep_num' => $_POST['dep'],
 				'div_num' => $_POST['annee'])
 			);
-			print_r($etudiant);
+
 			$etudiantManager -> addEtudiant($etudiant);
 		}
 

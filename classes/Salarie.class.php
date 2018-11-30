@@ -17,7 +17,7 @@ class Salarie{
 			switch($attribut){
 				case 'per_num': $this->setPerNum($valeur);
 				break;
-				case 'sal_telprof': $this->setSalTelprof($valeur);
+				case 'sal_telprof': $this->setTelprof($valeur);
 				break;
 				case 'fon_num': $this->setFonNum($valeur);
 				break;
@@ -27,7 +27,7 @@ class Salarie{
 	public function setPerNum($perNum){
 		$this->per_num=$perNum;
 	}
-	public function setSalTelprof($saltelprof){
+	public function setTelprof($saltelprof){
 		$this->sal_telprof=$saltelprof;
 	}
 	public function setFonNum($fonnum){
@@ -44,5 +44,5 @@ class Salarie{
 	public function getFonNum(){
 		return $this->fon_num;
 	}
-	
+
 }

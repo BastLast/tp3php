@@ -10,9 +10,9 @@ class SalarieManager{
 		('INSERT INTO salarie (per_num,sal_telprof,fon_num)
 		VALUES (:num,:saltelprof,:fonnum)');
 
-		$req ->bindValue(':num',$Personne->getSalNum(),PDO::PARAM_STR);
-		$req ->bindValue(':saltelprof',$Personne->getSalTelProf(),PDO::PARAM_STR);
-		$req ->bindValue(':fonnum',$Personne->getSalFonNum(),PDO::PARAM_STR);
+		$req ->bindValue(':num',$Salarie->getPerNum(),PDO::PARAM_STR);
+		$req ->bindValue(':saltelprof',$Salarie->getTelProf(),PDO::PARAM_STR);
+		$req ->bindValue(':fonnum',$Salarie->getFonNum(),PDO::PARAM_STR);
 
 		$req->execute();
 	}
