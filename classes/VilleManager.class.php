@@ -58,7 +58,7 @@ class VilleManager{
 		$req -> closeCursor();
 	}
 
-//fonction permettant de recuperer une ville à partir d'une id
+	//fonction permettant de recuperer une ville à partir d'une id
 	public function getVilleById($id){
 
 		$req = $this->db->prepare(
@@ -77,17 +77,18 @@ class VilleManager{
 		$listeVilles = array();
 		$req = $this->db->prepare(
 			"SELECT distinct vil_num, vil_nom FROM ville
-		JOIN parcours ON vil_num1 = vil_num WHERE vil_num2 = :id
-		UNION SELECT DISTINCT vil_num, vil_nom FROM ville
-		JOIN parcours ON vil_num2 = vil_num WHERE vil_num1 = :id
-		ORDER BY vil_nom");
-		$req->execute();
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
-			$listeVilles[]= new Ville($ville);
-		}
-		return $listeVilles;
-		$req -> closeCursor();
-	}
+			JOIN parcours ON vil_num1 = vil_num WHERE vil_num2 = :id
+			UNION SELECT DISTINCT vil_num, vil_nom FROM ville
+			JOIN parcours ON vil_num2 = vil_num WHERE vil_num1 = :id
+			ORDER BY vil_nom");
 
-}
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
+			while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+				$listeVilles[]= new Ville($ville);
+			}
+			return $listeVilles;
+			$req -> closeCursor();
+		}
+
+	}

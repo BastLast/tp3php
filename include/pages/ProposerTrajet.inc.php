@@ -20,33 +20,47 @@
           echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
         }
         ?>
-      </form>
+      </select>
+    </form>
+    <?php
+  }else{
+    $_SESSION['villeD'] = $_POST['villeD'];
+    ?>Ville de départ :  <?php
+    $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
+    echo $villeD->getNomVille();
+    ?> <br>
+
+    <form action="#" id="FormProposeTrajet" method="post">
+      Ville d'arrivée : <select name="villeA">
+        <?php
+        $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
+        foreach ($listeVillesCompatible as $ville) {
+          echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+        }
+        ?>
+      </select>
+      Date de départ :
+      <br>
       <?php
-    }else{
-      $_SESSION['villeD'] = $_POST['villeD'];
-      ?>Ville de départ :  <?php
-      $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
-      echo $villeD->getNomVille();
-      ?><p>Ville d'arrivée :</p>
-      <form action="#" id="FormProposeTrajet" method="post">
-        Ville de départ :
-        <select name="villeA">
-          <?php
-          $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
-          foreach ($listeVillesCompatible as $ville) {
-            echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
-          }
-          ?>
-        </form>
+      $date = date("Y-m-j"); // récuperation de la date du jour
+      echo '<input name="date" id="date" type="date" value="'.$date.'">'
+      ?>
+      Heure de départ :
+      <br>
+      <?php
+      $heure = date("G:i:s"); // récuperation de l'heure du jour
+      echo '<input name="heure" id="date" type="time" value="'.$heure.'">'
+      ?>
+    </form>
 
 
 
-       <?php
+    <?php
 
 
 
-
-    }
 
   }
-  ?>
+
+}
+?>
