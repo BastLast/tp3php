@@ -2,14 +2,6 @@
 <h1>Ajouter une personne</h1>
 <?php
 
-
-$db=new Mypdo();
-$personneManager= new PersonneManager($db);
-$fonctionManager = new FonctionManager($db);
-$divisionManager = new DivisionManager($db);
-$salarieManager = new SalarieManager($db);
-$etudiantManager = new EtudiantManager($db);
-$departementManager =new DepartementManager($db);
 if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 	?>

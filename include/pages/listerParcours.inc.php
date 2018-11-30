@@ -1,8 +1,4 @@
 <h1>Liste des parcours</h1>
-<?php
-$db = new Mypdo();
-$villeManager = new VilleManager($db);
-$parcoursManager = new ParcoursManager($db);?>
 Actuellement
 <?php echo $parcoursManager->countParcours() ?>
  parcours sont enregistrées
