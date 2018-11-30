@@ -21,7 +21,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 
 	<?php
-
+	
 }else{ // ce n'est pas la premiere fois que la page est appelee
 
 

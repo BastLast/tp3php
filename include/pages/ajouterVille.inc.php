@@ -14,11 +14,11 @@ if (empty($_POST)){
 
   $villeManager -> addVille($ville);
 
-?>
-<img src="image\valid.png" alt="confirmation validee">
-La ville "<b><?php
-echo $_POST["vil_nom"];
- ?></b>" a bien été ajoutée
-<?php
-}
   ?>
+  <img src="image\valid.png" alt="confirmation validee">
+  La ville "<b><?php
+  echo $_POST["vil_nom"];
+  ?></b>" a bien été ajoutée
+  <?php
+}
+?>
