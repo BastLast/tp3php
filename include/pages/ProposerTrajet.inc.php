@@ -1,51 +1,35 @@
-<?php if(empty($_SESSION['co'])){
+<?php if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
   ?>
   <h1>Vous devez être connecté pour afficher cette page !</h1>
   Vous allez être redirigé dans 2 secondes.
   <meta http-equiv="refresh" content="2; URL=index.php?page=0">
   <?php
-}else{
+}else{ // l'utilisateur est connecté
   ?>
   <h1>Proposer un trajet</h1>
   <?php
-  if (empty($_POST)){
+  if (empty($_POST)){ // premier passage sur la page de proposition de trajet
     ?>
     <form action="#" id="FormVilleDepart" method="post">
       Ville de départ :
       <select name="villeD" onChange='javascript:document.getElementById("FormVilleDepart").submit()'>
+        <option value="Defaut">Choisissez une ville</option>
         <?php
         $listeVilles = $villeManager->getListReferenced();
         foreach ($listeVilles as $ville) {
           echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
         }
         ?>
+      </form>
+      <?php
+    }else{
+      $_SESSION['villeD'] = $_POST['villeD'];
+      ?>Ville de départ : <?php
 
-    </form>
-    <?php
-  }else{
-    ?>
-    <?php
-    $parcour = new Parcours(
-      array('par_km' => $_POST['parkm'],
-      'vil_num1' => $_POST['ville1'],
-      'vil_num2' => $_POST['ville2'])
-    );
-    $db = new Mypdo();
-    $parcoursManager = new ParcoursManager($db);
-    $parcoursManager -> addParcours($parcour);
 
-    ?>
-    <img src="image\valid.png" alt="confirmation validee">
-    Le parcours a bien été ajouté
-    <?php
+
+
+    }
+
   }
   ?>
-
-
-
-
-
-
-  <?php
-}
-?>
