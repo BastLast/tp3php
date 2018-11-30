@@ -8,9 +8,6 @@
   ?>
   <h1>Proposer un trajet</h1>
   <?php
-
-  $db = new Mypdo();
-  $villeManager = new VilleManager($db);
   if (empty($_POST)){
     ?>
     <form action="#" id="FormVilleDepart" method="post">

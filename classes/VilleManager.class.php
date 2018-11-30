@@ -34,13 +34,15 @@ class VilleManager{
 	public function getListReferenced(){
 
 		$listeVilles = array();
-		$sql = 	'SELECT vil_nom , vil_num FROM ville ORDER BY vil_nom';
-		$req = $this->db->query($sql);
+		$req = $this->db->prepare('SELECT distinct vil_num, vil_nom FROM ville v WHERE vil_num in (
+			select vil_num1 from parcours p1 union select vil_num2 from parcours p2
+		)
+		ORDER BY vil_nom');
+		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeVilles[]= new Ville($ville);
 		}
-
 		return $listeVilles;
 		$req -> closeCursor();
 	}

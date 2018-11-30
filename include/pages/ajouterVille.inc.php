@@ -11,7 +11,6 @@ if (empty($_POST)){
   ?>
   <?php
   $ville = new Ville($_POST);
-  $db = new Mypdo();
 
   $villeManager -> addVille($ville);
 

@@ -1,8 +1,6 @@
 <h1>Ajouter un parcours</h1>
 <?php
 
-$db = new Mypdo();
-$villeManager = new VilleManager($db);
 if (empty($_POST)){
   ?>
   <form action="#" id="FormParcours" method="post">
