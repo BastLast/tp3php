@@ -62,14 +62,32 @@ class VilleManager{
 	public function getVilleById($id){
 
 		$req = $this->db->prepare(
-			"SELECT *  FROM ville where vil_num = :id"
+			"SELECT vil_num, vil_nom  FROM ville where vil_num = :id"
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		$req->execute();
 		$res = $req->fetch(PDO::FETCH_OBJ);
 		return new Ville($res);
 		$req -> closeCursor();
+	}
 
+	//fonction permetant de lister toutes les villes compatibles avec la ville dont l'id est passée en parametre
+	public function getListCompatible($id){
+
+		$listeVilles = array();
+		$req = $this->db->prepare(
+			"SELECT distinct vil_num, vil_nom FROM ville
+		JOIN parcours ON vil_num1 = vil_num WHERE vil_num2 = :id
+		UNION SELECT DISTINCT vil_num, vil_nom FROM ville
+		JOIN parcours ON vil_num2 = vil_num WHERE vil_num1 = :id
+		ORDER BY vil_nom");
+		$req->execute();
+		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilles[]= new Ville($ville);
+		}
+		return $listeVilles;
+		$req -> closeCursor();
 	}
 
 }
