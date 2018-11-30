@@ -8,7 +8,7 @@ class FonctionManager{
 	public function getList(){
 		$listeFonctions = array();
 		$req = $this->db->prepare('SELECT fon_num, fon_libelle FROM fonction ORDER BY fon_libelle');
-		$	$req->execute();
+		$req->execute();
 
 		while ($fonction = $req->fetch(PDO::FETCH_OBJ)) {
 			$listeFonctions[]= new Fonction($fonction);
