@@ -1,40 +1,32 @@
 <h1>Modifier une personne</h1>
 <?php
 $listePersonne=$personneManager->getList();
-if(empty($_POST['#'])){ 
-?>
-
-
+if(empty($_POST)){
+	?>
 	<form method="post" action="#">
-	
-		<select name="personneModifier">
-		
+		<select name="personneModifiee">
 			<?php
-				foreach($listePersonne as $personne){
-					?>
-					
-					<option value="<?php $personne->getPerNum(); ?>"><?php echo $personne->getPerNom()." ".$personne->getPerPrenom(); ?></option>	
-					
-					<?php
-				}
-			?>
-			
-		</select>
-		
-	<input type="submit" value="Modifier" />
-	</form>
-	<?php echo $_POST['personneModifier']; ?>
-	
- <?php 
- }else{
-	 $personne = $personneManager->getPerById( $_SESSION ['personneModifier'] );
-	 
-	echo "good";
-	 
-	 
-	 
-	 
- } 
- ?>
+			foreach($listePersonne as $personne){
+				echo '<option value="'.$personne->getPerNum().'">'.$personne->getPerNom()." ".$personne->getPerPrenom().'</option>';
 
- 
+			}
+			?>
+
+		</select>
+
+		<input type="submit" value="Modifier" />
+	</form>
+
+
+	<?php
+}else{
+	echo $_POST['personneModifiee'];
+	$personne = $personneManager->getPersonneById( $_POST['personneModifiee'] );
+
+	echo "good";
+
+
+
+
+}
+?>
