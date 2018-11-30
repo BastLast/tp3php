@@ -26,7 +26,16 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 
 	if(!empty($_POST["type"])){
-		$_SESSION = $_POST;
+		$_SESSION['type'] = $_POST["type"];
+		$password = sha1(sha1($_POST['pdp']).SALT);
+		$_SESSION['personne'] = new Personne(
+			array('per_nom' => $_POST['nom'],
+			'per_prenom' => $_POST['prenom'],
+			'per_tel' => $_POST['tel'],
+			'per_mail' => $_POST['mail'],
+			'per_login' => $_POST['login'],
+			'per_pwd' => $password)
+		);
 		// c'est la deuxieme fois que la page est appelée
 
 		if($_POST['type']== "personnel"){
@@ -73,22 +82,11 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		}
 	}
 	else{ // il s'agit du troisieme à la page.
-		$password = sha1(sha1($_SESSION['pdp']).SALT);
-		$personne = new Personne(
-			array('per_nom' => $_SESSION['nom'],
-			'per_prenom' => $_SESSION['prenom'],
-			'per_tel' => $_SESSION['tel'],
-			'per_mail' => $_SESSION['mail'],
-			'per_login' => $_SESSION['login'],
-			'per_pwd' => $password)
-		);
-
 		?>
 		<br>
 		<br>
 		<?php
-
-		$personneManager -> addPersonne($personne);
+		$personneManager -> addPersonne($_SESSION['personne']);
 
 		$id = $db->lastInsertId(); // recuperation de l'id de la derniere personne enregistree
 		if($_SESSION['type'] == "personnel"){// on doit enregistrer un nouveau membre du personnel
@@ -112,7 +110,10 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		?>
 		<img src="image\valid.png" alt="confirmation validee">
 		La personne a bien été ajoutée
+
 		<?php
+		unset($_SESSION['type']);
+		unset($_SESSION['personne']); // on supprime les variables de session dont on a plus besoin
 	}
 }
 
