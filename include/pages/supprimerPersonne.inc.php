@@ -3,19 +3,6 @@
 $listePersonne = $personneManager->getList();
 
 if(empty($_GET['num'])){
-?>
-<h1>Personne enregistré</h2>
-<p>il y a actuellement <?php echo $personneManager->countPersonne(); ?> enregistré<p>
-
-<table>
-	<tr class="enTete">
-		<th>Num</th>
-		<th>Nom</th>
-		<th>Prenom</th>
-		<th>Supprimer</th>
-	</tr>
-	<?php
-	foreach($listePersonne as $personne){
 	?>
 	<h1>Personne enregistré</h2>
 		<p>il y a actuellement <?php echo $personneManager->countPersonne(); ?> enregistré<p>
@@ -38,7 +25,8 @@ if(empty($_GET['num'])){
 			<?php } ?>
 		</table>
 		<?php
-	}else{
+	}
+	else{
 		$id=$_GET["num"];
 		$personne = $personneManager->getPersonneById($id);
 		if($personneManager->estEtudiantByid($id)){
