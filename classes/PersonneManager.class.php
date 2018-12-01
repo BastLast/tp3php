@@ -25,8 +25,8 @@ class PersonneManager{
 	//fonction permettant de lister toutes les personnes
 	public function getList(){
 
-			$req = $this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num');
-			$req->execute();
+		$req = $this->db->prepare('SELECT per_num,per_nom,per_prenom FROM personne ORDER BY per_num');
+		$req->execute();
 
 		$listePersonne=array();
 
@@ -48,7 +48,7 @@ class PersonneManager{
 		$req-> closeCursor();
 	}
 
-//fonction permettant de recuperer une personne à partir d'une id
+	//fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneByLogin($login){
 		$req=$this ->db->prepare
 		("SELECT per_nom,per_prenom,per_tel,per_mail,per_login,per_pwd  FROM personne where per_login = :login");
@@ -59,17 +59,17 @@ class PersonneManager{
 		$req -> closeCursor();
 	}
 
-//fonction permettant de verifier si une personne est un étudiant
+	//fonction permettant de verifier si une personne est un étudiant
 	public function estEtudiant($id){ //REFACTOR : on est pas censé avoir besoin de passer l'id en parametre !
 		//on peut la recuperer avec un this.getid ou un truc du genre
 
 		if(isset($id)){
 
 			$req = $this->db->prepare(
-			'SELECT per_num FROM etudiant WHERE per_num = :id'
+				'SELECT per_num FROM etudiant WHERE per_num = :id'
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
-		 	$req->execute();
+			$req->execute();
 			return $req->fetch(PDO::FETCH_OBJ);
 			$req->closeCursor();
 		} else {
@@ -77,49 +77,49 @@ class PersonneManager{
 		}
 	}
 
-//fonction permettant de recuperer une personne à partir d'une id
+	//fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneById($id){
-		
-		if(isset($id)){ //REFACTOR : wtf ? à quoi sert ce test ?
 
-		$req=$this->db->prepare(
-			'SELECT per_num FROM personne where per_num= :id'
-		);
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		$req->execute();
+		if(isset($id)){
 
-		$res=$req->fetch(PDO::FETCH_OBJ);
-		return new Personne($res);
-		$req->closeCursor();
+			$req=$this->db->prepare(
+				'SELECT per_num,per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd FROM personne where per_num= :id'
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
+
+			$res=$req->fetch(PDO::FETCH_OBJ);
+			return new Personne($res);
+			$req->closeCursor();
 		}
 	}
-	
-	
+
+
 	public function supPersonne($id){
 		$db = new Mypdo();
 		$etudiantManager=new EtudiantManager($db);
 		$salarieManager=new SalarieManager($db);
-		
+
 		if(isset($id)){
-			
-		if($this->estEtudiant($id)){
-		
-			$etudiantManager->supEtudiant($id);
-		} else {
-			
-			$salarieManager->supSalarie($id);
-		}
-		
-		$req=$this->db->prepare(
-			'DELETE FROM personne WHERE per_num = :id'	
-		);
-		
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		return $req->execute();
-		$req->closeCursor;
+
+			if($this->estEtudiant($id)){
+
+				$etudiantManager->supEtudiant($id);
+			} else {
+
+				$salarieManager->supSalarie($id);
+			}
+
+			$req=$this->db->prepare(
+				'DELETE FROM personne WHERE per_num = :id'
+			);
+
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			return $req->execute();
+			$req->closeCursor;
 		}
 	}
-	
+
 	public function upPersonne($personne){
 		if(isset($personne)){
 			$req=$this->db->prepare(

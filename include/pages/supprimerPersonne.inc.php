@@ -15,18 +15,18 @@ if(empty($_GET['num'])){
 	</tr>
 	<?php
 	foreach($listePersonne as $personne){
-	?>	
+	?>
 		<td><?php echo $personne ->getPerNum(); ?></td>
 		<td><?php echo $personne ->getPerNom();?></td>
 		<td><?php echo $personne ->getPerPrenom();?></td>
 		<td><a href="index.php?page=4&num= <?php echo $personne ->getPerNum(); ?>"> <img src="image/erreur.png" alt="icon erreur"> </a></td>
 	</tr>
 	<?php } ?>
-	</table>	
-<?php	
+	</table>
+<?php
 }else{
 		$id=$_GET["num"];
-		
+
 		$personne = $personneManager->getPersonneById($id);
 		$avisManager->supAvis($id);
 		$proposeManager->supPropose($id);
@@ -42,21 +42,3 @@ if(empty($_GET['num'])){
 
 		<?php
 } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
