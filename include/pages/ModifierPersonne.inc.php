@@ -32,21 +32,21 @@ if(empty($_POST)){ //premier passage sur la page
 			<?php var_dump($personne);
 
 			?>
-			Nom:
+			<label>Nom:</label>
 			<?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
-			Prenom: <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required><br>
-			Telephone: <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
-			Mail: <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required> <br>
-			Login: <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
-			Mot de passe: <input type="password" name="pdp" size="4"><br>
-			Categorie:
+			<label>Prenom:</label> <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required><br>
+			<label>Telephone:</label> <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
+			<label>Mail:</label> <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required> <br>
+			<label>Login:</label> <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
+			<label>Mot de passe:</label> <input type="password" name="pdp" size="4"><br>
+			<label>Categorie:</label>
 
 			<?php if($personneManager->estEtudiant($_SESSION['idPersonneAModifier'] )) { ?>
-				 <input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
-				 <input type="radio" name="type" value="personnel" size="4" > Personnel
+				 <input type="radio" name="type" value="etudiant" size="4" checked="checked"><label>Etudiant</label>
+				 <input type="radio" name="type" value="personnel" size="4" > <label>Personnel</label>
 			<?php } else{ ?>
-				<input type="radio" name="type" value="etudiant" size="4" > Etudiant
-				<input type="radio" name="type" value="personnel" size="4" checked="checked"> Personnel
+				<input type="radio" name="type" value="etudiant" size="4" > <label>Etudiant</label>
+				<input type="radio" name="type" value="personnel" size="4" checked="checked"> <label>Personnel</label>
 			<?php } ?>
 			<input type="submit" value="Valider">
 		</form>
@@ -57,8 +57,8 @@ if(empty($_POST)){ //premier passage sur la page
 
 					?>
 					<form id="FormPersonnel" method="post">
-						Telephone professionnel: <input type="text" name="telpro">
-						Fonction: <select name="fonction">
+						<label>Telephone professionnel:</label> <input type="text" name="telpro">
+						<label>Fonction:</label> <select name="fonction">
 							<?php
 							$listeFonctions = $fonctionManager->getList();
 							foreach ($listeFonctions as $fonction) {
@@ -74,7 +74,7 @@ if(empty($_POST)){ //premier passage sur la page
 
 					?>
 					<form id="FormEtudiant" method="post">
-						Annee: <select name="annee">
+						<label>Annee:</label> <select name="annee">
 							<?php
 							$listeDivisions = $divisionManager->getList();
 							foreach ($listeDivisions as $division) {
@@ -82,7 +82,7 @@ if(empty($_POST)){ //premier passage sur la page
 							}
 							?>
 						</select>
-						Departement: <select name="dep">
+						<label>Departement:</label> <select name="dep">
 							<?php
 							$listeDepartements = $departementManager->getList();
 							foreach ($listeDepartements as $departement) {
@@ -90,7 +90,7 @@ if(empty($_POST)){ //premier passage sur la page
 							}
 							?>
 						</select>
-						<input type="submit" value="Valider">
+						<input class="button" type="submit" value="Valider">
 					</form>
 					<?php
 			}

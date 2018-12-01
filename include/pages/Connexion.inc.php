@@ -8,26 +8,46 @@ if (empty($_POST)){
     <?php
   }else {
     ?>
+	<div id="contain">
     <h1>Pour vous connecter</h1>
-    <form action="#" id="FormLogin" method="post">
-      Nom d'utilisateur:<input type="text" name="login" size="4" required>
-      Mot de passe:<input type="password" name="password" size="4" required>
-
+    <form class="connection" action="#" id="FormLogin" method="post">
+	<div>
+		<div>
+			<label> Nom d'utilisateur:</label>
+		</div>
+		<div>
+			<input type="text" name="login" size="4" required>
+		</div>
+    </div>
+	<div>
+		<div>
+			<label>Mot de passe:</label>
+		</div>
+		<div>
+			<input type="password" name="password" size="4" required>
+		</div>
+	</div>	
+	<div id="captcha">
+		  <?php
+		  $nb2 = rand(1 , 9);
+		  $nb1 = rand(1 , 9);
+		  $_SESSION['verifCaptcha'] = $nb1 + $nb2;
+		  ?>
+		  <img src=<?php echo "image/nb/$nb1.jpg" ?> alt="captcha1">
+		  +
+		  <img src=<?php echo "image/nb/$nb2.jpg" ?> alt="captcha2">
+		  =
+	  </div>
       <?php
-      $nb2 = rand(1 , 9);
-      $nb1 = rand(1 , 9);
-      $_SESSION['verifCaptcha'] = $nb1 + $nb2;
       ?>
-      <img src=<?php echo "image/nb/$nb1.jpg" ?> alt="captcha1">
-      +
-      <img src=<?php echo "image/nb/$nb2.jpg" ?> alt="captcha2">
-      =
-      <?php
-      ?>
-      <input type="text" name="captcha" size="4" required>
-      <input type="submit" value="Valider" />
-    </form>
-
+	  <div>
+      <input id= "champ" type="text" name="captcha" size="4" required>
+	  </div>
+	  <div >
+      <input class="button" type="submit" value="Valider" />
+	  </div>
+	</form>
+	</div>
 
     <?php
   }
@@ -38,7 +58,7 @@ if (empty($_POST)){
     <img src="image/erreur.png" alt="connexion echouee">
     Captcha incorrect !
     <a href="index.php?page=11">
-      <button type="button" name="Reessayer">Reessayer</button>
+      <button class="button" type="button" name="Reessayer">Reessayer</button>
     </a>
     <?php
   }else { // le captcha est OK
