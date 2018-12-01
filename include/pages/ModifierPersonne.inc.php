@@ -23,7 +23,7 @@ if(empty($_POST)){ //premier passage sur la page
 
 	$_SESSION['idPersonneAModifier'] =$_POST['personneModifiee'];
 	$personne = new Personne($personneManager->getPersonneById( $_SESSION['idPersonneAModifier'] ));
-	var_dump($personneManager->getPersonneById( $_SESSION['idPersonneAModifier'] ));
+	
 	if(empty($_POST['nom'])){
 
 
@@ -95,6 +95,6 @@ if(empty($_POST)){ //premier passage sur la page
 					<?php
 			}
 		}
-
+	unset($_SESSION['idPersonneAModifier']);
 }
 ?>

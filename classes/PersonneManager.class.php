@@ -70,10 +70,9 @@ class PersonneManager{
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
 			$req->execute();
-			return $req->fetch(PDO::FETCH_OBJ);
+			$req->fetch(PDO::FETCH_OBJ);
+			return TRUE;
 			$req->closeCursor();
-		} else {
-			return FALSE;
 		}
 	}
 
