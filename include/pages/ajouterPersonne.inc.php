@@ -10,41 +10,41 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 	<form action="#" id="FormPersonne" method="post">
 		<div>
 			<div>
-				<label>Nom:</label> <input class="champSaisie" class="gauche" type="text" name="nom" size="16" required>
+				<label>Nom:</label> <input  type="text" name="nom" size="16" required>
 			</div>
 			
 			<div>
-			<label>Prenom:</label> <input class="champSaisie" type="text" name="prenom" size="16" required><br>
-			</div>
-			
-		</div>
-		
-		<div>
-			<div>
-				<label>Telephone:</label> <input class="champSaisie" class="gauche" type="text" name="tel" size="16" required>
-			</div>
-			
-			<div>
-				<label>Mail:</label> <input class="champSaisie" type="email" name="mail" size="16" required><br>
+			<label>Prenom:</label> <input type="text" name="prenom" size="16" required><br>
 			</div>
 			
 		</div>
 		
 		<div>
-			
 			<div>
-				<label>Login:</label> <input class="champSaisie" class="gauche" type="text" name="login" size="16" required>
+				<label>Telephone:</label> <input  type="tel" name="tel" size="16" required>
 			</div>
 			
 			<div>
-				<label>Mot de passe:</label> <input class="champSaisie" type="password" name="pdp" size="16" required><br>
+				<label>Mail:</label> <input  type="email" name="mail" size="16" required><br>
+			</div>
+			
+		</div>
+		
+		<div>
+			
+			<div>
+				<label>Login:</label> <input   type="text" name="login" size="16" required>
+			</div>
+			
+			<div>
+				<label>Mot de passe:</label> <input  type="password" name="pdp" size="16" required><br>
 			</div>
 		</div>
 		
 		<div class="clear"></div>
 		
 		<div class="categorie">
-		<label>Categorie:</label> <input class="champSaisie" type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
+		<label>Categorie:</label> <input  type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
 		<input type="radio" name="type" value="personnel" size="4"> <label>Personnel</label>
 		</div>
 		<div class="boutton">
@@ -76,7 +76,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			?>
 			<h1>Ajouter un salaries</h1>
 			<form id="FormPersonnel" method="post">
-				<label>Telephone professionnel: </label> <input class="champSaisie" type="text" name="telpro" required>
+				<label>Telephone professionnel: </label> <input type="tel" name="telpro" required>
 				<label>Fonction:</label> <select class="champSaisie" name="fonction">
 					<?php
 					$listeFonctions = $fonctionManager->getList();

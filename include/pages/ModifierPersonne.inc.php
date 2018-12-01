@@ -47,7 +47,7 @@ if(empty($_POST)){ //premier passage sur la page
 			<label>Nom:</label>
 			<?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
 			<label>Prenom:</label> <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required><br>
-			<label>Telephone:</label> <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
+			<label>Telephone:</label> <input type="tel" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
 			<label>Mail:</label> <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required> <br>
 			<label>Login:</label> <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
 			<label>Mot de passe:</label> <input type="password" name="pdp" size="4"><br>
@@ -88,7 +88,7 @@ if(empty($_POST)){ //premier passage sur la page
 =======
 					?>
 					<form id="FormPersonnel" method="post">
-						<label>Telephone professionnel:</label> <input type="text" name="telpro">
+						<label>Telephone professionnel:</label> <input type="tel" name="telpro">
 						<label>Fonction:</label> <select name="fonction">
 							<?php
 							$listeFonctions = $fonctionManager->getList();
