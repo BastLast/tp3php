@@ -1,7 +1,21 @@
+
 <?php
 $listePersonne = $personneManager->getList();
 
 if(empty($_GET['num'])){
+?>
+<h1>Personne enregistré</h2>
+<p>il y a actuellement <?php echo $personneManager->countPersonne(); ?> enregistré<p>
+
+<table>
+	<tr class="enTete">
+		<th>Num</th>
+		<th>Nom</th>
+		<th>Prenom</th>
+		<th>Supprimer</th>
+	</tr>
+	<?php
+	foreach($listePersonne as $personne){
 	?>
 	<h1>Personne enregistré</h2>
 		<p>il y a actuellement <?php echo $personneManager->countPersonne(); ?> enregistré<p>
@@ -34,8 +48,8 @@ if(empty($_GET['num'])){
 		}
 		$personneManager->supPersonneByid($id);
 		echo $personne->getPerNom()." ".$personne->getPerPrenom()." a bien été supprimé."; ?>
-		<input type="button" value="Continuer" onclick="location.href='index.php?page=4'" />
-		<input type="button" value="Menu" onclick="location.href='index.php?page=1'" />
+		<input class="button" type="button" value="Continuer" onclick="location.href='index.php?page=4'" />
+		<input class="button" type="button" value="Menu" onclick="location.href='index.php?page=1'" />
 
 		<?php
 	} ?>

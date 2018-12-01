@@ -8,15 +8,48 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 
 	<form action="#" id="FormPersonne" method="post">
-		Nom: <input type="text" name="nom" size="4" required>
-		Prenom: <input type="text" name="prenom" size="4" required><br>
-		Telephone: <input type="text" name="tel" size="4" required>
-		Mail: <input type="email" name="mail" size="4" required><br>
-		Login: <input type="text" name="login" size="4" required>
-		Mot de passe: <input type="password" name="pdp" size="4" required><br>
-		Categorie: <input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
-		<input type="radio" name="type" value="personnel" size="4"> Personnel
-		<input type="submit" value="Valider">
+		<div>
+			<div>
+				<label>Nom:</label> <input class="champSaisie" class="gauche" type="text" name="nom" size="16" required>
+			</div>
+			
+			<div>
+			<label>Prenom:</label> <input class="champSaisie" type="text" name="prenom" size="16" required><br>
+			</div>
+			
+		</div>
+		
+		<div>
+			<div>
+				<label>Telephone:</label> <input class="champSaisie" class="gauche" type="text" name="tel" size="16" required>
+			</div>
+			
+			<div>
+				<label>Mail:</label> <input class="champSaisie" type="email" name="mail" size="16" required><br>
+			</div>
+			
+		</div>
+		
+		<div>
+			
+			<div>
+				<label>Login:</label> <input class="champSaisie" class="gauche" type="text" name="login" size="16" required>
+			</div>
+			
+			<div>
+				<label>Mot de passe:</label> <input class="champSaisie" type="password" name="pdp" size="16" required><br>
+			</div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="categorie">
+		<label>Categorie:</label> <input class="champSaisie" type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
+		<input type="radio" name="type" value="personnel" size="4"> <label>Personnel</label>
+		</div>
+		<div class="boutton">
+		<input class="button" type="submit" value="Valider">
+		</div>
 	</form>
 
 
@@ -41,9 +74,10 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		if($_POST['type']== "personnel"){
 			// la personne a ajouter fait partie du personnel
 			?>
+			<h1>Ajouter un salaries</h1>
 			<form id="FormPersonnel" method="post">
-				Telephone professionnel: <input type="text" name="telpro" required>
-				Fonction: <select name="fonction">
+				<label>Telephone professionnel: </label> <input class="champSaisie" type="text" name="telpro" required>
+				<label>Fonction:</label> <select class="champSaisie" name="fonction">
 					<?php
 					$listeFonctions = $fonctionManager->getList();
 					foreach ($listeFonctions as $fonction) {
@@ -51,7 +85,9 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 					}
 					?>
 				</select>
-				<input type="submit" value="Valider">
+				<div>
+					<input class="button" type="submit" value="Valider">
+				</div>
 			</form>
 			<?php
 		}
@@ -59,8 +95,10 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		if($_POST['type']== "etudiant"){
 			//la personne a ajouter est un etudiant
 			?>
+			<h1>Ajouter un etudiant</h1>
 			<form id="FormEtudiant" method="post">
-				Annee: <select name="annee">
+			<div>
+				<label>Annee:</label> <select class="champSaisie" name="annee">
 					<?php
 					$listeDivisions = $divisionManager->getList();
 					foreach ($listeDivisions as $division) {
@@ -68,7 +106,9 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 					}
 					?>
 				</select>
-				Departement: <select name="dep">
+			</div>
+			<div>
+				<label>Departement:</label> <select class="champSaisie" name="dep">
 					<?php
 					$listeDepartements = $departementManager->getList();
 					foreach ($listeDepartements as $departement) {
@@ -76,7 +116,10 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 					}
 					?>
 				</select>
-				<input type="submit" value="Valider">
+			
+				<div >
+				<input class="button" type="submit" value="Valider">
+				</div>
 			</form>
 			<?php
 		}

@@ -4,7 +4,7 @@
 if (empty($_POST)){
   ?>
   <form action="#" id="FormParcours" method="post">
-    Ville 1 :
+    <label>Ville 1 :</label>
     <select name="ville1">
       <?php
       $listeVilles = $villeManager->getList();
@@ -13,7 +13,7 @@ if (empty($_POST)){
       }
       ?>
     </select>
-    Ville 2 :
+    <label>Ville 2 :</label>
     <select name="ville2">
       <?php
       foreach ($listeVilles as $ville) {
@@ -21,8 +21,8 @@ if (empty($_POST)){
       }
       ?>
     </select>
-    Nombre de kilomètre(s) :<input type="text" name="parkm" size="4" required>
-    <input type="submit" value="Valider" />
+    <label>Nombre de kilomètre(s) :</label><input type="text" name="parkm" size="4" required>
+    <input class="button" type="submit" value="Valider" />
   </form>
   <?php
 }else{

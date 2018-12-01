@@ -1,3 +1,4 @@
+<h1> Liste de personne enregistrees</h1>
 <?php
 if(empty($_GET["num"])){
 ?>
@@ -7,7 +8,7 @@ Actuellement
  personne sont enregistrées
 
 	<table>
-		<tr>
+		<tr class="enTete">
 			<th>Numero</th>
 			<th>Nom</th>
 			<th>Prenom</th>

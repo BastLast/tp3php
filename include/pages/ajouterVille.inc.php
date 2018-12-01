@@ -3,8 +3,8 @@
 if (empty($_POST)){
   ?>
   <form action="#" id="FormVille" method="post">
-    Nom :<input type="text" name="vil_nom" size="4" required>
-    <input type="submit" value="Ok" />
+    <label>Nom :</label><input type="text" name="vil_nom" size="4" required>
+    <input class="button" type="submit" value="Ok" />
   </form>
   <?php
 }else{

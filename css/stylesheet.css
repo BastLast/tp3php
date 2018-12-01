@@ -109,7 +109,7 @@ body{
 	margin-left: 5px;
 	text-align: center;
 	min-height:380px;
-	color:#222222;
+	color:#000;
 }
 
 #spacer {     
@@ -163,4 +163,116 @@ h1{
 	font-weight:bold;
 	text-decoration: none;	
 }
-#connect a :visited{
+#connect a :visited{}
+
+
+.clear{
+	clear: both
+}
+
+input{
+	border-radius: 8px;
+	text-align: center;
+}
+form{
+	margin-top:15px;
+	display: inline-block;
+	text-align: center;
+	
+}
+form div {
+	width: 120%;
+	text-align: justify;
+	margin: 0px auto;
+	
+}
+
+form div div {
+
+	float: left;
+	width: 50%;
+	
+}
+
+form div div label, form div div input{
+  display: inline;
+	float: left;
+	width: 40%;
+	margin: 5px;
+	
+}
+form div div label{
+	width: 45%
+	
+}
+
+.categorie{
+  display: inline;
+	margin-top: 15px;
+	margin-bottom: 2%;
+	
+	
+}
+
+input{
+	padding: 3px;
+	font-size: 13px;
+ 
+	
+}
+.button input{
+	
+	background: black;
+	border-radius: 8px;
+	border-color: gray;
+	color: white;
+	font-size: 14px;
+	margin: 20px;
+	margin-left: 40%;
+	padding: 5px 30px 
+}
+
+.button{
+	background: black;
+	border-radius: 8px;
+	border-color: gray;
+	color: white;
+	font-size: 14px;
+	padding: 2px 20px;
+	margin: 4px 20% 0px 20%
+}
+
+table{
+	margin: 0 auto;
+	margin-top:30px;
+	text-align: center;
+	border-collapse: collapse
+	
+}
+td, th {
+	
+  padding: 5px 20px;
+
+}
+td{
+	border:1px solid black;
+	padding: 10px 20px 10px 20px
+}
+select{
+	border-radius: 8px;
+	padding: 3px;
+	font-size: 13px
+}
+.connection div div {
+	float: left;
+	width: 170%
+}
+#captcha{
+	
+	margin: 0px 25% 0px 2%;
+	font-size: 50px
+}
+form div #champ{
+	width: 70%;
+}
+
