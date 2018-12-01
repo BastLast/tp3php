@@ -42,4 +42,15 @@ class SalarieManager{
 		return $req->execute();
 		$req->closeCursor;
 	}
+	
+	public function upSalarie($salarie){
+		$req=$this->db->prepare(
+			'UPDATE salarie SET per_num=:per_num,sal_telprof=:sal_telprof,fon_num=:fon_num'
+		);
+		$rep->bindValue(":per_num",$salarie->getPerNum(),PDO::PARAM_INT);
+		$rep->bindValue(":sal_telprof",$salarie->getTelProf(),PDO::PARAM_INT);
+		$rep->bindValue(":fon_num",$salarie->getFonNum(),PDO::PARAM_INT);
+		return $req->execute();
+		$req->closeCursor();
+	}
 }

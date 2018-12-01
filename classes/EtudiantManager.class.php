@@ -10,9 +10,9 @@ class EtudiantManager{
 		('INSERT INTO etudiant (per_num,dep_num,div_num)
 		VALUES (:per_num,:dep_num,:div_num)');
 
-		$req ->bindValue(':per_num',$Etudiant->getPerNum(),PDO::PARAM_STR);
-		$req ->bindValue(':dep_num',$Etudiant->getDepNum(),PDO::PARAM_STR);
-		$req ->bindValue(':div_num',$Etudiant->getDivNum(),PDO::PARAM_STR);
+		$req ->bindValue(':per_num',$Etudiant->getPerNum(),PDO::PARAM_INT);
+		$req ->bindValue(':dep_num',$Etudiant->getDepNum(),PDO::PARAM_INT);
+		$req ->bindValue(':div_num',$Etudiant->getDivNum(),PDO::PARAM_INT);
 
 		$req->execute();
 	}
@@ -24,7 +24,7 @@ class EtudiantManager{
 		$req=$this->db->prepare(
 			'SELECT * FROM etudiant WHERE per_num= :id'
 		);
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->bindValue(':id',$id,PDO::PARAM_INT);
 		$req->execute();
 		$res=$req->fetch(PDO::FETCH_OBJ);
 		return new Etudiant($res);
@@ -37,9 +37,20 @@ class EtudiantManager{
 			'DELETE FROM etudiant WHERE per_num = :id'
 
 		);
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
+		$req->bindValue(':id',$id,PDO::PARAM_INT);
 		return $req->execute();
 		$req->closeCursor;
+	}
+	
+	public function upEtudiant($etudiant){
+		$req=$this->db->prepare(
+			'UPDATE etudiant SET per_num=:per_num, dep_num=:dep_num, div_num=:div_num'
+		);
+		$req->bindValue(":per_num",$etudiant->getPerNum(),PDO::PARAM_INT);
+		$req->bindValue(":dep_num",$etudiant->getDepNum(),PDO::PARAM_INT);
+		$req->bindValue(":div_num",$etudiant->getDivNum(),PDO::PARAM_INT);
+		return $req->execute();
+		$req->closeCursor();
 	}
 
 }

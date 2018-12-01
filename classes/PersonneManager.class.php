@@ -79,10 +79,11 @@ class PersonneManager{
 
 //fonction permettant de recuperer une personne à partir d'une id
 	public function getPersonneById($id){
-		if(isset($id)) //REFACTOR : wtf ? à quoi sert ce test ?
+		
+		if(isset($id)){ //REFACTOR : wtf ? à quoi sert ce test ?
 
 		$req=$this->db->prepare(
-			'SELECT * FROM personne where per_num= :id'
+			'SELECT per_num FROM personne where per_num= :id'
 		);
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		$req->execute();
@@ -90,6 +91,7 @@ class PersonneManager{
 		$res=$req->fetch(PDO::FETCH_OBJ);
 		return new Personne($res);
 		$req->closeCursor();
+		}
 	}
 	
 	
@@ -101,7 +103,7 @@ class PersonneManager{
 		if(isset($id)){
 			
 		if($this->estEtudiant($id)){
-		echo $id;
+		
 			$etudiantManager->supEtudiant($id);
 		} else {
 			
@@ -115,6 +117,23 @@ class PersonneManager{
 		$req->bindValue(':id',$id,PDO::PARAM_STR);
 		return $req->execute();
 		$req->closeCursor;
+		}
+	}
+	
+	public function upPersonne($personne){
+		if(isset($personne)){
+			$req=$this->db->prepare(
+				'UPDATE personne SET per_num=:per_num, per_nom=:per_nom, per_prenom=:per_prenom, per_tel=:per_tel, per_mail=:per_mail, per_login=:per_login, per_pwd=:per_pwd'
+			);
+			$req->bindValue(':per_num',$per_num,PDO::PARAM_STR);
+			$req->bindValue(':per_nom',$per_nom,PDO::PARAM_STR);
+			$req->bindValue(':per_prenom',$per_prenom,PDO::PARAM_STR);
+			$req->bindValue(':per_tel',$per_tel,PDO::PARAM_STR);
+			$req->bindValue(':per_mail',$per_mail,PDO::PARAM_STR);
+			$req->bindValue(':per_login',$per_login,PDO::PARAM_STR);
+			$req->bindValue(':per_pwd',$per_pwd,PDO::PARAM_STR);
+			return $req->execute();
+			$req->closeCursor();
 		}
 	}
 
