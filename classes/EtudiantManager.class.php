@@ -32,7 +32,7 @@ class EtudiantManager{
 	}
 
 //cette fonction permet de supprimer un étudiant
-	public function supEtudiant($id){
+	public function supEtudiantByid($id){
 		$req=$this->db->prepare(
 			'DELETE FROM etudiant WHERE per_num = :id'
 
@@ -41,8 +41,9 @@ class EtudiantManager{
 		return $req->execute();
 		$req->closeCursor;
 	}
-	
-	public function upEtudiant($etudiant){
+
+//fonction permettant de mettre à jour un étudiant
+	public function updateEtudiant($etudiant){
 		$req=$this->db->prepare(
 			'UPDATE etudiant SET per_num=:per_num, dep_num=:dep_num, div_num=:div_num'
 		);

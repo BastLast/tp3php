@@ -33,7 +33,7 @@ class SalarieManager{
 	}
 
 	//fonction permettant de supprimer un salarie
-	public function supSalarie($id){
+	public function supSalarieByid($id){
 		$req=$this->db->prepare(
 			'DELETE FROM salarie WHERE per_num = :id'
 
@@ -42,8 +42,9 @@ class SalarieManager{
 		return $req->execute();
 		$req->closeCursor;
 	}
-	
-	public function upSalarie($salarie){
+
+//fonction permettant de mettre à jour un salarié
+	public function updateSalarie($salarie){
 		$req=$this->db->prepare(
 			'UPDATE salarie SET per_num=:per_num,sal_telprof=:sal_telprof,fon_num=:fon_num'
 		);

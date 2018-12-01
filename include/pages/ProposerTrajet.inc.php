@@ -24,7 +24,7 @@
     </form>
     <?php
   }else{
-    if(empty($_POST['places'])){
+    if(empty($_POST['places'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
       ?>Ville de départ :  <?php
       $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
@@ -43,13 +43,14 @@
         Date de départ :
         <br>
         <?php
-        $date = date("Y-m-j"); // récuperation de la date du jour
+        $date = date("Y-m-d"); // récuperation de la date du jour
         echo '<input name="date" type="date" value="'.$date.'">'
         ?>
         Heure de départ :
         <br>
         <?php
-        $heure = date("G:i:s"); // récuperation de l'heure du jour
+        date_default_timezone_set('Europe/Paris');
+        $heure = date("H:i:s"); // récuperation de l'heure du jour
         echo '<input name="heure" type="time" value="'.$heure.'">'
         ?>
         Nombre de place : <input name="places" type="text" size="4" required>
@@ -57,6 +58,9 @@
       </form>
 
       <?php
+    }
+    else{ // 3 eme passage sur la page
+
     }
   }
 }

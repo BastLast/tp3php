@@ -60,8 +60,7 @@ class PersonneManager{
 	}
 
 	//fonction permettant de verifier si une personne est un étudiant
-	public function estEtudiant($id){ //REFACTOR : on est pas censé avoir besoin de passer l'id en parametre !
-		//on peut la recuperer avec un this.getid ou un truc du genre
+	public function estEtudiantByid($id){
 
 		if(isset($id)){
 
@@ -70,8 +69,7 @@ class PersonneManager{
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
 			$req->execute();
-			$req->fetch(PDO::FETCH_OBJ);
-			return TRUE;
+			return $req->fetch(PDO::FETCH_OBJ);
 			$req->closeCursor();
 		}
 	}
@@ -93,20 +91,20 @@ class PersonneManager{
 		}
 	}
 
-
-	public function supPersonne($id){
+//fonction permettant de supprimer une personne à partir de son id
+	public function supPersonneByid($id){
 		$db = new Mypdo();
 		$etudiantManager=new EtudiantManager($db);
 		$salarieManager=new SalarieManager($db);
-
+		$avisManager = new AvisManager($db);
+		$proposeManager = new ProposeManager($db);
 		if(isset($id)){
-
-			if($this->estEtudiant($id)){
-
-				$etudiantManager->supEtudiant($id);
+			$avisManager->supAvisOfPersonneByid($id);
+			$proposeManager->supProposeOfPersonneByid($id);
+			if($this->estEtudiantByid($id)){
+				$etudiantManager->supEtudiantByid($id);
 			} else {
-
-				$salarieManager->supSalarie($id);
+				$salarieManager->supSalarieByid($id);
 			}
 
 			$req=$this->db->prepare(
@@ -114,12 +112,13 @@ class PersonneManager{
 			);
 
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
-			return $req->execute();
-			$req->closeCursor;
+			$req->execute();
+			$req->closeCursor();
 		}
 	}
 
-	public function upPersonne($personne){
+//fonction permettant de mettre à jour une personne
+	public function updatePersonne($personne){
 		if(isset($personne)){
 			$req=$this->db->prepare(
 				'UPDATE personne SET per_num=:per_num, per_nom=:per_nom, per_prenom=:per_prenom, per_tel=:per_tel, per_mail=:per_mail, per_login=:per_login, per_pwd=:per_pwd'
@@ -135,5 +134,4 @@ class PersonneManager{
 			$req->closeCursor();
 		}
 	}
-
 }
