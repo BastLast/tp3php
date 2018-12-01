@@ -21,7 +21,7 @@ if (empty($_POST)){
       }
       ?>
     </select>
-    Nombre de kilomètre(s) :<input type="text" name="parkm" size="4">
+    Nombre de kilomètre(s) :<input type="text" name="parkm" size="4" required>
     <input type="submit" value="Valider" />
   </form>
   <?php
@@ -33,8 +33,6 @@ if (empty($_POST)){
     'vil_num1' => $_POST['ville1'],
     'vil_num2' => $_POST['ville2'])
   );
-  $db = new Mypdo();
-  $parcoursManager = new ParcoursManager($db);
   $parcoursManager -> addParcours($parcour);
 
   ?>
