@@ -24,44 +24,40 @@
     </form>
     <?php
   }else{
-    $_SESSION['villeD'] = $_POST['villeD'];
-    ?>Ville de départ :  <?php
-    $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
-    echo $villeD->getNomVille();
-    ?> <br>
+    if(empty($_POST['places'])){
+      $_SESSION['villeD'] = $_POST['villeD'];
+      ?>Ville de départ :  <?php
+      $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
+      echo $villeD->getNomVille();
+      ?> <br>
 
-    <form action="#" id="FormProposeTrajet" method="post">
-      Ville d'arrivée : <select name="villeA">
+      <form action="#" id="FormProposeTrajet" method="post">
+        Ville d'arrivée : <select name="villeA">
+          <?php
+          $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
+          foreach ($listeVillesCompatible as $ville) {
+            echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+          }
+          ?>
+        </select>
+        Date de départ :
+        <br>
         <?php
-        $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
-        foreach ($listeVillesCompatible as $ville) {
-          echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
-        }
+        $date = date("Y-m-j"); // récuperation de la date du jour
+        echo '<input name="date" type="date" value="'.$date.'">'
         ?>
-      </select>
-      Date de départ :
-      <br>
+        Heure de départ :
+        <br>
+        <?php
+        $heure = date("G:i:s"); // récuperation de l'heure du jour
+        echo '<input name="heure" type="time" value="'.$heure.'">'
+        ?>
+        Nombre de place : <input name="places" type="text" size="4" required>
+        <input type="submit" value="Valider">
+      </form>
+
       <?php
-      $date = date("Y-m-j"); // récuperation de la date du jour
-      echo '<input name="date" type="date" value="'.$date.'">'
-      ?>
-      Heure de départ :
-      <br>
-      <?php
-      $heure = date("G:i:s"); // récuperation de l'heure du jour
-      echo '<input name="heure" type="time" value="'.$heure.'">'
-      ?>
-      Nombre de place : <input name="places" type="text" size="4">
-    </form>
-
-
-
-    <?php
-
-
-
-
+    }
   }
-
 }
 ?>

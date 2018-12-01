@@ -8,12 +8,12 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 
 	<form action="#" id="FormPersonne" method="post">
-		Nom: <input type="text" name="nom" size="4">
-		Prenom: <input type="text" name="prenom" size="4"><br>
-		Telephone: <input type="text" name="tel" size="4">
-		Mail: <input type="email" name="mail" size="4"><br>
-		Login: <input type="text" name="login" size="4">
-		Mot de passe: <input type="password" name="pdp" size="4"><br>
+		Nom: <input type="text" name="nom" size="4" required>
+		Prenom: <input type="text" name="prenom" size="4" required><br>
+		Telephone: <input type="text" name="tel" size="4" required>
+		Mail: <input type="email" name="mail" size="4" required><br>
+		Login: <input type="text" name="login" size="4" required>
+		Mot de passe: <input type="password" name="pdp" size="4" required><br>
 		Categorie: <input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
 		<input type="radio" name="type" value="personnel" size="4"> Personnel
 		<input type="submit" value="Valider">
@@ -42,7 +42,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			// la personne a ajouter fait partie du personnel
 			?>
 			<form id="FormPersonnel" method="post">
-				Telephone professionnel: <input type="text" name="telpro">
+				Telephone professionnel: <input type="text" name="telpro" required>
 				Fonction: <select name="fonction">
 					<?php
 					$listeFonctions = $fonctionManager->getList();
