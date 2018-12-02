@@ -23,7 +23,7 @@ if(empty($_POST)){ //premier passage sur la page
 		$personne = $personneManager->getPersonneById( $_POST['personneModifiee'] );
 		$_SESSION['idpersonneModifiee'] = $_POST['personneModifiee'];
 		?>
-		<form action="##" id="FormModifierPersonne" method="post">
+		<form action="#" id="FormModifierPersonne" method="post">
 			<div>
 				<div>
 				<label>Nom:</label><?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
