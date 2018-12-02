@@ -137,4 +137,15 @@ class PersonneManager{
 		}
 	}
 
+	//fonction récuperant la note moyenne d'un utilisateur
+	public function getNoteByid($id){
+
+	}
+
+//fonction permettant de recuperer le dernier avis laissé sur le profil d'un utilisateur
+	public function getLastAvisByid($id){
+
+
+	}
+
 }
