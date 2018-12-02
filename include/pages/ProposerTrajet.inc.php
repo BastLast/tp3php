@@ -15,7 +15,7 @@
       <select name="villeD" onChange='javascript:document.getElementById("FormVilleDepart").submit()'>
         <option value="Defaut">Choisissez une ville</option>
         <?php
-        $listeVillesReferenced = $villeManager->getListReferenced();
+        $listeVillesReferenced = $villeManager->getListReferencedinParcours();
         foreach ($listeVillesReferenced as $ville) {
           echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
         }

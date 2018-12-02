@@ -31,13 +31,35 @@ class VilleManager{
 	}
 
 	//fonction permetant de lister toutes les villes référencées dans la table parcours
-	public function getListReferenced(){
+	public function getListReferencedinParcours(){
 
 		$listeVilles = array();
-		$req = $this->db->prepare('SELECT distinct vil_num, vil_nom FROM ville v WHERE vil_num in (
-			select vil_num1 from parcours p1 union select vil_num2 from parcours p2
+		$req = $this->db->prepare('SELECT DISTINCT vil_num, vil_nom FROM ville v WHERE vil_num IN (
+			SELECT vil_num1 FROM parcours UNION SELECT vil_num2 FROM parcours
 		)
 		ORDER BY vil_nom');
+		$req->execute();
+
+		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+			$listeVilles[]= new Ville($ville);
+		}
+		return $listeVilles;
+		$req -> closeCursor();
+	}
+
+	//fonction permetant de lister toutes les villes référencées dans la table propose en tant que ville de départ
+	public function getListReferencedinPropose(){
+
+		$listeVilles = array();
+		$req = $this->db->prepare('SELECT distinct vil_num, vil_nom FROM ville v WHERE vil_num IN
+			( select vil_num1 FROM parcours p1
+				JOIN propose pr ON pr.par_num = p1.par_num
+				WHERE pro_sens = 0
+				UNION
+				SELECT vil_num2 FROM parcours p2
+				JOIN propose pr2 ON pr2.par_num = p2.par_num
+				WHERE pro_sens = 1 )
+				ORDER BY vil_nom');
 		$req->execute();
 
 		while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
