@@ -48,7 +48,7 @@ if(empty($_POST)){ //premier passage sur la page
 				<label>Mot de passe:</label> <input type="password" name="pdp" size="4" required>
 				</div>
 			</div>
-			<div>
+			<div class="categorie">
 				<label>Categorie:</label>
 
 				<?php if($personneManager->estEtudiantByid($personne->getPerNum())) {

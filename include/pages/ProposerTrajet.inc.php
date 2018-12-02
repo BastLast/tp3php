@@ -29,7 +29,7 @@
       ?>
 
       <form action="#" id="FormProposeTrajet" method="post">
-		
+
 		<div>
 			<div>
 				<label>Ville de départ :</label>  <?php
@@ -70,7 +70,7 @@
 		<div>
 			<label>Nombre de place :<label> <input name="places" type="text" size="4" required>
 		</div>
-		
+
 		<div class="boutton">
 			<input class="button" type="submit" value="Valider">
 		</div>
@@ -86,6 +86,7 @@
           $sens = 1;
         }
         $personne = $personneManager->getPersonneByLogin($_SESSION['co']);
+
         $propose = new Propose(
           array('par_num' => $parcours->getParNum(),
           'per_num' => $personne->getPerNum(),
