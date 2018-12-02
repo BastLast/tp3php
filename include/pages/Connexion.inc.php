@@ -40,7 +40,7 @@ if (empty($_POST)){
 	  </div>
       <?php
       ?>
-	  <div>
+	  <div id="bouttonValid">
       <input id= "champ" type="text" name="captcha" size="4" required>
 	  </div>
 	  <div >

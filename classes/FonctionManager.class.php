@@ -23,7 +23,7 @@ class FonctionManager{
 		if(isset($id)){
 
 			$req=$this->db->prepare(
-				'SELECT * FROM fonction where fon_num = :id'
+				'SELECT fon_num,fon_libelle FROM fonction where fon_num = :id'
 			);
 
 			$req->bindValue(':id',$id,PDO::PARAM_STR);

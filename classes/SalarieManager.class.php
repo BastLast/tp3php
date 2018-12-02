@@ -21,14 +21,14 @@ class SalarieManager{
 	public function getSalarieById($id){
 		if(isset($id)){
 
-		$req=$this->db->prepare(
-			'SELECT * FROM salarie where per_num= :id'
-		);
-		$req->bindValue(':id',$id,PDO::PARAM_STR);
-		$req->execute();
-		$res=$req->fetch(PDO::FETCH_OBJ);
-		return new Salarie($res);
-		$req->closeCursor();
+			$req=$this->db->prepare(
+				'SELECT per_num,sal_telprof,fon_num FROM salarie where per_num= :id'
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
+			$res=$req->fetch(PDO::FETCH_OBJ);
+			return new Salarie($res);
+			$req->closeCursor();
 		}
 	}
 
@@ -43,7 +43,7 @@ class SalarieManager{
 		$req->closeCursor;
 	}
 
-//fonction permettant de mettre à jour un salarié
+	//fonction permettant de mettre à jour un salarié
 	public function updateSalarie($salarie){
 		$req=$this->db->prepare(
 			'UPDATE salarie SET sal_telprof= :sal_telprof,fon_num= :fon_num WHERE per_num= :per_num'
