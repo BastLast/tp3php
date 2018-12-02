@@ -40,7 +40,7 @@ if(empty($_POST)){ //premier passage sur la page
 				<input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
 				<input type="radio" name="type" value="personnel" size="4" > Personnel
 			<?php } else{
-								$_SESSION['type'] = 'personnel';
+				$_SESSION['type'] = 'personnel';
 				//la personne est un personnel ?>
 				<input type="radio" name="type" value="etudiant" size="4" > Etudiant
 				<input type="radio" name="type" value="personnel" size="4" checked="checked"> Personnel
@@ -148,10 +148,31 @@ if(empty($_POST)){ //premier passage sur la page
 						'dep_num' => $_POST['dep'],
 						'div_num' => $_POST['annee']
 					)); //enregistrement des nouvelles infos saisies
-					$etudiantManager -> updateEtudiant($etudiant);
+					$etudiantManager->updateEtudiant($etudiant);
 
 				}
 
+			}else{
+				//Le type n'est pas conservé
+				if($_SESSION['newType'] == 'personnel'){
+					//la personne deviens un membre du personnel
+					$salarie = new Salarie(
+						array('per_num'=> $_SESSION['idpersonneModifiee'],
+						'sal_telprof' => $_POST['telpro'],
+						'fon_num' => $_POST['fonction']
+					)); //enregistrement des nouvelles infos saisies
+					$salarieManager->addSalarie($salarie);
+					$etudiantManager->supEtudiantByid($_SESSION['idpersonneModifiee']);
+				}else{
+					//la personne deviens un étudiant
+					$etudiant = new Etudiant(
+						array('per_num'=> $_SESSION['idpersonneModifiee'],
+						'dep_num' => $_POST['dep'],
+						'div_num' => $_POST['annee']
+					)); //enregistrement des nouvelles infos saisies
+					$etudiantManager->addEtudiant($etudiant);
+					$salarieManager->supSalarieByid($_SESSION['idpersonneModifiee']);
+				}
 			}
 
 
