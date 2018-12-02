@@ -1,48 +1,48 @@
 
-<h1>Ajouter une personne</h1>
+
 <?php
 
 if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 
 	?>
 
-
+<h1>Ajouter une personne</h1>
 	<form action="#" id="FormPersonne" method="post">
 		<div>
 			<div>
 				<label>Nom:</label> <input  type="text" name="nom" size="16" required>
 			</div>
-			
+
 			<div>
 			<label>Prenom:</label> <input type="text" name="prenom" size="16" required>
 			</div>
-			
+
 		</div>
-		
+
 		<div>
 			<div>
 				<label>Telephone:</label> <input  type="tel" name="tel" size="16" required>
 			</div>
-			
+
 			<div>
 				<label>Mail:</label> <input  type="email" name="mail" size="16" required>
 			</div>
-			
+
 		</div>
-		
+
 		<div>
-			
+
 			<div>
 				<label>Login:</label> <input   type="text" name="login" size="16" required>
 			</div>
-			
+
 			<div>
 				<label>Mot de passe:</label> <input  type="password" name="pdp" size="16" required>
 			</div>
 		</div>
-		
+
 		<div class="clear"></div>
-		
+
 		<div class="categorie">
 			<label>Categorie:</label> <input  type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
 			<input type="radio" name="type" value="personnel" size="4"> <label>Personnel</label>
@@ -127,14 +127,27 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			<div class="boutton">
 				<input class="button" type="submit" value="Valider">
 			</div>
+			<div>
+				<label>Departement:</label> <select class="champSaisie" name="dep">
+					<?php
+					$listeDepartements = $departementManager->getList();
+					foreach ($listeDepartements as $departement) {
+						echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
+					}
+					?>
+				</select>
+
+				<div >
+				<input class="button" type="submit" value="Valider">
+				</div>
 			</form>
 			<?php
 		}
 	}
 	else{ // il s'agit du troisieme à la page.
 		?>
-		
-		
+
+
 		<?php
 		$personneManager -> addPersonne($_SESSION['personne']);
 

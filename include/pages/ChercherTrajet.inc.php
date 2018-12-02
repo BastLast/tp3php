@@ -108,7 +108,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                 <th>Ville arrivée</th>
                 <th>Date départ</th>
                 <th>Heure départ</th>
-                <th>Nombre de place</th>
+                <th>Nombre de place(s)</th>
                 <th>Nom du covoitureur</th>
               </tr>
               <?php
@@ -127,14 +127,19 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                   <td><?php echo $propose->getProTime(); ?></td>
                   <td><?php echo $propose->getProPlace(); ?></td>
                   <td>
-                    <span title = "test">
+                    <?php
+                    $note = $personneManager->getNoteByid($propose->getPerNum());
+                    $dernierAvis = $personneManager->getLastAvisByid($propose->getPerNum());
+                    ?>
+                    <span title = "Moyenne des avis : <?php echo $note; ?>
+                      Dernier avis : :<?php echo $dernierAvis; ?>">
                       <?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?>
                     </span>
                   </td>
                 </tr>
               <?php } ?>
             </table>
-Laissez votre curseur sur un conducteur pour afficher des informations supplémentaires !
+            Laissez votre curseur sur un conducteur pour afficher des informations supplémentaires !
 
             <?php
           }else{
