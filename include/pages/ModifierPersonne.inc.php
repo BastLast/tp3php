@@ -4,7 +4,7 @@ $listePersonne=$personneManager->getList();
 if(empty($_POST)){ //premier passage sur la page
 	?>
 	<form method="post" action="#" id="FormModifierPersonne" >
-		Personne a modifier :
+		<label>Personne a modifier :</label>
 		<select name="personneModifiee" onChange='javascript:document.getElementById("FormModifierPersonne").submit()'>
 			<option value="Defaut">Choisissez une personne</option>
 			<?php
@@ -24,28 +24,48 @@ if(empty($_POST)){ //premier passage sur la page
 		$_SESSION['idpersonneModifiee'] = $_POST['personneModifiee'];
 		?>
 		<form action="##" id="FormModifierPersonne" method="post">
+			<div>
+				<div>
+				<label>Nom:</label><?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
+				</div>
+				<div>
+				<label>Prenom:</label> <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required>
+				</div>
+			</div>
+			<div>
+				<div>
+				<label>Telephone:</label> <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
+				</div>
+				<div>
+				<label>Mail: </label><input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required>
+				</div>
+			</div>
+			<div>
+				<div>
+				<label>Login:</label> <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
+				</div>
+				<div>
+				<label>Mot de passe:</label> <input type="password" name="pdp" size="4" required>
+				</div>
+			</div>
+			<div>
+				<label>Categorie:</label>
 
-			Nom:
-			<?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
-			Prenom: <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required>
-			Telephone: <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
-			Mail: <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required>
-			Login: <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
-			Mot de passe: <input type="password" name="pdp" size="4" required>
-			Categorie:
-
-			<?php if($personneManager->estEtudiantByid($personne->getPerNum())) {
-				$_SESSION['type'] = 'etudiant';
-				//test si la personne est un étudiant ou un salarié ?>
-				<input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
-				<input type="radio" name="type" value="personnel" size="4" > Personnel
-			<?php } else{
-				$_SESSION['type'] = 'personnel';
-				//la personne est un personnel ?>
-				<input type="radio" name="type" value="etudiant" size="4" > Etudiant
-				<input type="radio" name="type" value="personnel" size="4" checked="checked"> Personnel
-			<?php } ?>
-			<input type="submit" value="Valider">
+				<?php if($personneManager->estEtudiantByid($personne->getPerNum())) {
+					$_SESSION['type'] = 'etudiant';
+					//test si la personne est un étudiant ou un salarié ?>
+					<input type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
+					<input type="radio" name="type" value="personnel" size="4" > <label>Personnel</label>
+				<?php } else{
+					$_SESSION['type'] = 'personnel';
+					//la personne est un personnel ?>
+					<input type="radio" name="type" value="etudiant" size="4" > <label>Etudiant</label>
+					<input type="radio" name="type" value="personnel" size="4" checked="checked"> <label>Personnel</label>
+				<?php } ?>
+			</div>
+			<div class="boutton">
+				<input class="button" type="submit" value="Valider">
+			</div>
 		</form>
 		<?php
 

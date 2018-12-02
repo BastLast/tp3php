@@ -8,11 +8,11 @@ if(empty($_GET['num'])){
 		<p>il y a actuellement <?php echo $personneManager->countPersonne(); ?> enregistré<p>
 
 			<table>
-				<tr>
-					<td>Num</td>
-					<td>Nom</td>
-					<td>Prenom</td>
-					<td>Supprimer</td>
+				<tr class="enTete">
+					<th>Num</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Supprimer</th>
 				</tr>
 				<?php
 				foreach($listePersonne as $personne){
