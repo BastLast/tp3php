@@ -14,7 +14,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			</div>
 			
 			<div>
-			<label>Prenom:</label> <input type="text" name="prenom" size="16" required><br>
+			<label>Prenom:</label> <input type="text" name="prenom" size="16" required>
 			</div>
 			
 		</div>
@@ -25,7 +25,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			</div>
 			
 			<div>
-				<label>Mail:</label> <input  type="email" name="mail" size="16" required><br>
+				<label>Mail:</label> <input  type="email" name="mail" size="16" required>
 			</div>
 			
 		</div>
@@ -37,7 +37,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			</div>
 			
 			<div>
-				<label>Mot de passe:</label> <input  type="password" name="pdp" size="16" required><br>
+				<label>Mot de passe:</label> <input  type="password" name="pdp" size="16" required>
 			</div>
 		</div>
 		
@@ -126,8 +126,8 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 	}
 	else{ // il s'agit du troisieme à la page.
 		?>
-		<br>
-		<br>
+		
+		
 		<?php
 		$personneManager -> addPersonne($_SESSION['personne']);
 

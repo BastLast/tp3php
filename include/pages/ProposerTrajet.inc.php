@@ -29,7 +29,7 @@
       ?><label>Ville de départ :</label>  <?php
       $villeD = $villeManager->getVilleById($_SESSION['villeD']);
       echo $villeD->getNomVille();
-      ?> <br>
+      ?>
 
       <form action="#" id="FormProposeTrajet" method="post">
         <label>Ville d'arrivée :</label> <select name="villeA">
@@ -41,13 +41,13 @@
           ?>
         </select>
         <label>Date de départ :</label>
-        <br>
+
         <?php
         $date = date("Y-m-d"); // récuperation de la date du jour
         echo '<input name="date" type="date" value="'.$date.'">'
         ?>
         <label>Heure de départ :</label>
-        <br>
+
         <?php
         date_default_timezone_set('Europe/Paris');
         $heure = date("H:i:s"); // récuperation de l'heure du jour

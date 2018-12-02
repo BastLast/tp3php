@@ -27,11 +27,11 @@ if(empty($_POST)){ //premier passage sur la page
 
 			Nom:
 			<?php echo '<input type="text" name="nom" size="4" value= "'.$personne->getPerNom().'" required>'			?>
-			Prenom: <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required><br>
+			Prenom: <input type="text" name="prenom" size="4" value= "<?php echo $personne->getPerPrenom(); ?>" required>
 			Telephone: <input type="text" name="tel" size="4" value= "<?php echo $personne->getPerTel(); ?>" required >
-			Mail: <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required> <br>
+			Mail: <input type="email" name="mail" size="4" value= "<?php echo $personne->getPerMail(); ?>" required>
 			Login: <input type="text" name="login" size="4" value= "<?php echo $personne->getPerLogin(); ?>" required>
-			Mot de passe: <input type="password" name="pdp" size="4" required><br>
+			Mot de passe: <input type="password" name="pdp" size="4" required>
 			Categorie:
 
 			<?php if($personneManager->estEtudiantByid($personne->getPerNum())) {
