@@ -91,7 +91,7 @@ class PersonneManager{
 		}
 	}
 
-//fonction permettant de supprimer une personne à partir de son id
+	//fonction permettant de supprimer une personne à partir de son id
 	public function supPersonneByid($id){
 		$db = new Mypdo();
 		$etudiantManager=new EtudiantManager($db);
@@ -146,7 +146,6 @@ class PersonneManager{
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
 			$req->execute();
-
 			$res = $req->fetch(PDO::FETCH_OBJ);
 			return round($res->moyenne,2);
 			$req->closeCursor();
@@ -154,7 +153,7 @@ class PersonneManager{
 		}
 	}
 
-//fonction permettant de recuperer le dernier avis laissé sur le profil d'un utilisateur
+	//fonction permettant de recuperer le dernier avis laissé sur le profil d'un utilisateur
 	public function getLastAvisByid($id){
 
 		if(isset($id)){
@@ -162,15 +161,19 @@ class PersonneManager{
 				'SELECT avi_comm AS commentaire FROM avis
 				WHERE per_num= :id and avi_date <= ALL(
 					SELECT avi_date FROM avis WHERE per_num= :id)'
-			);
-			$req->bindValue(':id',$id,PDO::PARAM_STR);
-			$req->execute();
+				);
+				$req->bindValue(':id',$id,PDO::PARAM_STR);
+				$req->execute();
 
-			$res = $req->fetch(PDO::FETCH_OBJ);
-			return $res->commentaire;
-			$req->closeCursor();
+				$res = $req->fetch(PDO::FETCH_OBJ);
+				if($res != null){
+					return $res->commentaire;
+				}else{
+					return "Pas encore de commentaire";
+				}
+				$req->closeCursor();
 
+			}
 		}
-	}
 
-}
+	}
