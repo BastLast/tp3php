@@ -26,14 +26,14 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
     <?php
   }else{
 
-    if(empty($_POST['places'])){ //deuxieme passage sur la page
+    if(empty($_POST['villeA'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
       ?><label>Ville de départ :</label>  <?php
       $villeD = $villeManager->getVilleById($_SESSION['villeD']);
       echo $villeD->getNomVille();
       ?>
 
-      <form action="#" id="FormProposeTrajet" method="post">
+      <form action="#" id="FormChercherTrajet" method="post">
         <label>Ville d'arrivée :</label> <select name="villeA">
           <?php
           $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
@@ -53,7 +53,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
           <option value="0"> Ce jour</option>
           <option value="1"> +/- 1 jour</option>
           <option value="2"> +/- 2 jours</option>
-          <option value="3"> +/- 3 jour</option>
+          <option value="3"> +/- 3 jours</option>
         </select>
         <label>A partir de : <label>
           <select name="heuremin">
@@ -69,28 +69,55 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 
         <?php
       }
+
       else{ // troisieme passage sur la page
-        $parcours = $parcoursManager->getParcoursByVilles($_SESSION['villeD'],$_POST['villeA']);
-        if($_SESSION['villeD'] == $parcours->getVille1()){
-          $sens = 0;
-        }else{
-          $sens = 1;
+        $listePropose = $proposeManager->search(
+          $_SESSION['villeD'],
+          $_POST['villeA'],
+          $_POST['date'],
+          $_POST['heuremin'],
+          $_POST['precision']);
+          if($listePropose != null){
+            ?>
+
+            <table>
+              <tr>
+                <th>Ville départ</th>
+                <th>Ville arrivée</th>
+                <th>Date départ</th>
+                <th>Heure départ</th>
+                <th>Nombre de place</th>
+                <th>Nom du covoitureur</th>
+              </tr>
+              <?php
+
+
+              foreach ($listePropose as $propose) {
+                $conducteur =  $personneManager->getPersonneById($propose->getPerNum())
+                ?>
+                <tr>
+                  <td><?php echo $villeManager->getVilleById($_SESSION['villeD'])->getNomVille() ?></td>
+                  <td><?php echo $villeManager->getVilleById($_POST['villeA'])->getNomVille() ?></td>
+                  <?php
+
+                  ?>
+                  <td><?php echo $propose->getProDate() ?></td>
+                  <td><?php echo $propose->getProTime(); ?></td>
+                  <td><?php echo $propose->getProPlace(); ?></td>
+                  <td><?php echo $conducteur->getPerNom();?></td>
+                </tr>
+              <?php } ?>
+            </table>
+
+
+            <?php
+          }else{
+            ?>
+            <img src="image/erreur.png" alt="Aucun résultat">
+            Désolé pas de trajet disponible !
+            <?php
+          }
         }
-        $personne = $personneManager->getPersonneByLogin($_SESSION['co']);
-        $propose = new Propose(
-          array('par_num' => $parcours->getParNum(),
-          'per_num' => $personne->getPerNum(),
-          'pro_date' => $_POST['date'],
-          'pro_time' => $_POST['heure'],
-          'pro_place'=> $_POST['places'],
-          'pro_sens' => $sens)
-        );
-        $proposeManager -> addPropose($propose);
-        ?>
-        <img src="image\valid.png" alt="confirmation validee">
-        La proposition de trajet a bien été ajoutée
-        <?php
       }
     }
-  }
-  ?>
+    ?>
