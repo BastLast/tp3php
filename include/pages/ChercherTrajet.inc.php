@@ -104,11 +104,15 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                   <td><?php echo $propose->getProDate() ?></td>
                   <td><?php echo $propose->getProTime(); ?></td>
                   <td><?php echo $propose->getProPlace(); ?></td>
-                  <td><?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?></td>
+                  <td>
+                    <span title = "test">
+                      <?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?>
+                    </span>
+                  </td>
                 </tr>
               <?php } ?>
             </table>
-
+Laissez votre curseur sur un conducteur pour afficher des informations supplémentaires !
 
             <?php
           }else{
