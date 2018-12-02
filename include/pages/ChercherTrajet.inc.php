@@ -28,33 +28,51 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 
     if(empty($_POST['villeA'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
-      ?><label>Ville de départ :</label>  <?php
-      $villeD = $villeManager->getVilleById($_SESSION['villeD']);
-      echo $villeD->getNomVille();
       ?>
 
       <form action="#" id="FormChercherTrajet" method="post">
-        <label>Ville d'arrivée :</label> <select name="villeA">
-          <?php
-          $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
-          foreach ($listeVillesCompatible as $ville) {
-            echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
-          }
-          ?>
-        </select>
-        <label>Date de départ : </label>
+		<div>
+			<div>
+				<label>Ville de départ :</label>  <?php
+				$villeD = $villeManager->getVilleById($_SESSION['villeD']);
+				echo $villeD->getNomVille();
+				?>
+			</div>
+			
+			<div>
+				<label>Ville d'arrivée :</label> <select name="villeA">
+				  <?php
+				  $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
+				  foreach ($listeVillesCompatible as $ville) {
+					echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+				  }
+				  ?>
+				</select>
+			</div>
+		</div>
+		
+		<div>
+			<div>
+				<label>Date de départ : </label>
 
-        <?php
-        $date = date("Y-m-d"); // récuperation de la date du jour
-        echo '<input name="date" type="date" value="'.$date.'">'
-        ?>
-        <label>Précision  :</label>
-        <select name="precision">
-          <option value="0"> Ce jour</option>
-          <option value="1"> +/- 1 jour</option>
-          <option value="2"> +/- 2 jours</option>
-          <option value="3"> +/- 3 jours</option>
-        </select>
+				<?php
+				$date = date("Y-m-d"); // récuperation de la date du jour
+				echo '<input name="date" type="date" value="'.$date.'">'
+				?>
+			</div>
+			
+			<div>
+				<label>Précision  :</label>
+				<select name="precision">
+				  <option value="0"> Ce jour</option>
+				  <option value="1"> +/- 1 jour</option>
+				  <option value="2"> +/- 2 jours</option>
+				  <option value="3"> +/- 3 jours</option>
+				</select>
+			</div>
+		</div>
+		
+		<div>
         <label>A partir de : <label>
           <select name="heuremin">
             <?php
@@ -63,9 +81,13 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
             }
             ?>
           </select>
-
+		</div>
+		
+		<div class="boutton">
           <input class="button" type="submit" value="Valider">
-        </form>
+        </div>
+		
+		</form>
 
         <?php
       }

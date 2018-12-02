@@ -176,12 +176,14 @@ input{
 }
 form{
 	margin-top:15px;
+	width: 50%;
 	display: inline-block;
 	text-align: center;
+	margin-right: 20% 
 
 }
 form div {
-	width: 120%;
+	width: 150%;
 	text-align: justify;
 	margin: 0px auto;
 
@@ -202,7 +204,7 @@ form div div label, form div div input{
 
 }
 form div div label{
-	width: 45%
+	width: 46%
 
 }
 
@@ -228,7 +230,7 @@ input{
 	color: white;
 	font-size: 14px;
 	padding: 2px 20px;
-	margin: 4px 20% 0px 20%
+	margin: 10px 20% 0px 20%
 }
 
 table{

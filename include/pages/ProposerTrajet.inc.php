@@ -26,36 +26,55 @@
   }else{
     if(empty($_POST['places'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
-      ?><label>Ville de départ :</label>  <?php
-      $villeD = $villeManager->getVilleById($_SESSION['villeD']);
-      echo $villeD->getNomVille();
       ?>
 
       <form action="#" id="FormProposeTrajet" method="post">
-        <label>Ville d'arrivée :</label> <select name="villeA">
-          <?php
-          $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
-          foreach ($listeVillesCompatible as $ville) {
-            echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
-          }
-          ?>
-        </select>
-        <label>Date de départ :</label>
+		
+		<div>
+			<div>
+				<label>Ville de départ :</label>  <?php
+				$villeD = $villeManager->getVilleById($_SESSION['villeD']);
+				echo $villeD->getNomVille();
+				?>
+			</div>
+			<div>
+				<label>Ville d'arrivée :</label> <select name="villeA">
+				  <?php
+				  $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
+				  foreach ($listeVillesCompatible as $ville) {
+					echo '<option value="'.$ville->getNumVille().'">'.$ville->getNomVille().'</option>';
+				  }
+				  ?>
+				</select>
+			</div>
+		</div>
+		<div>
+			<div>
+				<label>Date de départ :</label>
 
-        <?php
-        $date = date("Y-m-d"); // récuperation de la date du jour
-        echo '<input name="date" type="date" value="'.$date.'">'
-        ?>
-        <label>Heure de départ :</label>
+				<?php
+				$date = date("Y-m-d"); // récuperation de la date du jour
+				echo '<input name="date" type="date" value="'.$date.'">'
+				?>
+			</div>
+			<div>
+				<label>Heure de départ :</label>
 
-        <?php
-        date_default_timezone_set('Europe/Paris');
-        $heure = date("H:i:s"); // récuperation de l'heure du jour
-        echo '<input name="heure" type="time" value="'.$heure.'">'
-        ?>
-        <label>Nombre de place :<label> <input name="places" type="text" size="4" required>
-          <input class="button" type="submit" value="Valider">
-        </form>
+				<?php
+				date_default_timezone_set('Europe/Paris');
+				$heure = date("H:i:s"); // récuperation de l'heure du jour
+				echo '<input name="heure" type="time" value="'.$heure.'">'
+				?>
+			</div>
+		</div>
+		<div>
+			<label>Nombre de place :<label> <input name="places" type="text" size="4" required>
+		</div>
+		
+		<div class="boutton">
+			<input class="button" type="submit" value="Valider">
+		</div>
+	   </form>
 
         <?php
       }
