@@ -121,15 +121,17 @@ class PersonneManager{
 	public function updatePersonne($personne){
 		if(isset($personne)){
 			$req=$this->db->prepare(
-				'UPDATE personne SET per_num=:per_num, per_nom=:per_nom, per_prenom=:per_prenom, per_tel=:per_tel, per_mail=:per_mail, per_login=:per_login, per_pwd=:per_pwd'
+				'UPDATE personne SET per_nom= :per_nom, per_prenom= :per_prenom, per_tel= :per_tel, per_mail= :per_mail,
+				 per_login= :per_login, per_pwd= :per_pwd
+				WHERE per_num= :per_num'
 			);
-			$req->bindValue(':per_num',$per_num,PDO::PARAM_STR);
-			$req->bindValue(':per_nom',$per_nom,PDO::PARAM_STR);
-			$req->bindValue(':per_prenom',$per_prenom,PDO::PARAM_STR);
-			$req->bindValue(':per_tel',$per_tel,PDO::PARAM_STR);
-			$req->bindValue(':per_mail',$per_mail,PDO::PARAM_STR);
-			$req->bindValue(':per_login',$per_login,PDO::PARAM_STR);
-			$req->bindValue(':per_pwd',$per_pwd,PDO::PARAM_STR);
+			$req->bindValue(':per_num',$personne->getPerNum(),PDO::PARAM_STR);
+			$req->bindValue(':per_nom',$personne->getPerNom(),PDO::PARAM_STR);
+			$req->bindValue(':per_prenom',$personne->getPerPrenom(),PDO::PARAM_STR);
+			$req->bindValue(':per_tel',$personne->getPerTel(),PDO::PARAM_STR);
+			$req->bindValue(':per_mail',$personne->getPerMail(),PDO::PARAM_STR);
+			$req->bindValue(':per_login',$personne->getPerLogin(),PDO::PARAM_STR);
+			$req->bindValue(':per_pwd',$personne->getPerPwd(),PDO::PARAM_STR);
 			return $req->execute();
 			$req->closeCursor();
 		}
