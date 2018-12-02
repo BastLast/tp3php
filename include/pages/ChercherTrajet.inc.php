@@ -104,7 +104,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                   <td><?php echo $propose->getProDate() ?></td>
                   <td><?php echo $propose->getProTime(); ?></td>
                   <td><?php echo $propose->getProPlace(); ?></td>
-                  <td><?php echo $conducteur->getPerNom();?></td>
+                  <td><?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?></td>
                 </tr>
               <?php } ?>
             </table>
