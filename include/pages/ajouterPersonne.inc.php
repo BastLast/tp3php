@@ -127,19 +127,7 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			<div class="boutton">
 				<input class="button" type="submit" value="Valider">
 			</div>
-			<div>
-				<label>Departement:</label> <select class="champSaisie" name="dep">
-					<?php
-					$listeDepartements = $departementManager->getList();
-					foreach ($listeDepartements as $departement) {
-						echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
-					}
-					?>
-				</select>
-
-				<div >
-				<input class="button" type="submit" value="Valider">
-				</div>
+			
 			</form>
 			<?php
 		}
