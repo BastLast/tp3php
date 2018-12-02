@@ -1,4 +1,5 @@
-<?php if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
+<?php
+if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
   ?>
   <h1>Vous devez être connecté pour afficher cette page !</h1>
   Vous allez être redirigé dans 2 secondes.
@@ -8,7 +9,7 @@
   ?>
   <h1>Rechercher un trajet</h1>
   <?php
-  if (empty($_POST)){ // premier passage sur la page de proposition de trajet
+  if (empty($_POST)){ // premier passage sur la page de recherche de trajet
     ?>
     <form action="#" id="FormVilleDepart" method="post">
       <label>Ville de départ :</label>
@@ -24,12 +25,13 @@
     </form>
     <?php
   }else{
+
     if(empty($_POST['places'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
       ?><label>Ville de départ :</label>  <?php
       $villeD = $villeManager->getVilleById($_SESSION['villeD']);
       echo $villeD->getNomVille();
-      ?> <br>
+      ?>
 
       <form action="#" id="FormProposeTrajet" method="post">
         <label>Ville d'arrivée :</label> <select name="villeA">
@@ -40,26 +42,34 @@
           }
           ?>
         </select>
-        <label>Date de départ :</label>
-        <br>
+        <label>Date de départ : </label>
+
         <?php
         $date = date("Y-m-d"); // récuperation de la date du jour
         echo '<input name="date" type="date" value="'.$date.'">'
         ?>
-        <label>Heure de départ :</label>
-        <br>
-        <?php
-        date_default_timezone_set('Europe/Paris');
-        $heure = date("H:i:s"); // récuperation de l'heure du jour
-        echo '<input name="heure" type="time" value="'.$heure.'">'
-        ?>
-        <label>Nombre de place :<label> <input name="places" type="text" size="4" required>
+        <label>Précision  :</label>
+        <select name="precision">
+          <option value="0"> Ce jour</option>
+          <option value="1"> +/- 1 jour</option>
+          <option value="2"> +/- 2 jours</option>
+          <option value="3"> +/- 3 jour</option>
+        </select>
+        <label>A partir de : <label>
+          <select name="heuremin">
+            <?php
+            for ($compteur=0; $compteur <= 23; $compteur++) {
+              echo '<option value="'.$compteur.'">'.$compteur.' h</option>';
+            }
+            ?>
+          </select>
+
           <input class="button" type="submit" value="Valider">
         </form>
 
         <?php
       }
-      else{ // 3 eme passage sur la page
+      else{ // troisieme passage sur la page
         $parcours = $parcoursManager->getParcoursByVilles($_SESSION['villeD'],$_POST['villeA']);
         if($_SESSION['villeD'] == $parcours->getVille1()){
           $sens = 0;
