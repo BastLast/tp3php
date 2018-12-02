@@ -48,9 +48,9 @@ class SalarieManager{
 		$req=$this->db->prepare(
 			'UPDATE salarie SET sal_telprof= :sal_telprof,fon_num= :fon_num WHERE per_num= :per_num'
 		);
-		$rep->bindValue(":per_num",$salarie->getPerNum(),PDO::PARAM_INT);
-		$rep->bindValue(":sal_telprof",$salarie->getTelProf(),PDO::PARAM_INT);
-		$rep->bindValue(":fon_num",$salarie->getFonNum(),PDO::PARAM_INT);
+		$req->bindValue(":per_num",$salarie->getPerNum(),PDO::PARAM_INT);
+		$req->bindValue(":sal_telprof",$salarie->getTelProf(),PDO::PARAM_INT);
+		$req->bindValue(":fon_num",$salarie->getFonNum(),PDO::PARAM_INT);
 		return $req->execute();
 		$req->closeCursor();
 	}

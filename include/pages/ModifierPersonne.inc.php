@@ -35,10 +35,12 @@ if(empty($_POST)){ //premier passage sur la page
 			Categorie:
 
 			<?php if($personneManager->estEtudiantByid($personne->getPerNum())) {
+				$_SESSION['type'] = 'etudiant';
 				//test si la personne est un étudiant ou un salarié ?>
 				<input type="radio" name="type" value="etudiant" size="4" checked="checked"> Etudiant
 				<input type="radio" name="type" value="personnel" size="4" > Personnel
 			<?php } else{
+								$_SESSION['type'] = 'personnel';
 				//la personne est un personnel ?>
 				<input type="radio" name="type" value="etudiant" size="4" > Etudiant
 				<input type="radio" name="type" value="personnel" size="4" checked="checked"> Personnel
@@ -87,7 +89,7 @@ if(empty($_POST)){ //premier passage sur la page
 				<?php
 			}
 			else{
-				$_SESSION['etudiant'] = $etudiantManager->getEtudiantById($_SESSION['personne']->getPerNum());
+				$etudiant = $etudiantManager->getEtudiantById($_SESSION['personne']->getPerNum());
 				//la personne à modifier est ou doit devenir un étudiant
 				?>
 				<form id="FormEtudiant" method="post">
@@ -95,7 +97,7 @@ if(empty($_POST)){ //premier passage sur la page
 						<?php
 						$listeDivisions = $divisionManager->getList();
 						foreach ($listeDivisions as $division) {
-							if ($_SESSION['etudiant']->getDivNum() == $division->getDivNum()) {
+							if ($etudiant->getDivNum() == $division->getDivNum()) {
 								echo '<option selected';
 							}else{
 								echo '<option';
@@ -108,7 +110,7 @@ if(empty($_POST)){ //premier passage sur la page
 						<?php
 						$listeDepartements = $departementManager->getList();
 						foreach ($listeDepartements as $departement) {
-							if ($_SESSION['etudiant']->getDepNum() == $departement->getDepNum()) {
+							if ($etudiant->getDepNum() == $departement->getDepNum()) {
 								echo '<option selected';
 							}else{
 								echo '<option';
@@ -125,30 +127,48 @@ if(empty($_POST)){ //premier passage sur la page
 
 		else{ //quatrieme passage sur la page
 
-				//enregistrement des infos générales
-				$personneManager -> updatePersonne($_SESSION['personne']);
+			//enregistrement des infos générales
+			$personneManager -> updatePersonne($_SESSION['personne']);
 
-				//test si la personne conserve le meme type
-				//$salarieManager -> addSalarie($salarie);
-				//$etudiantManager -> addEtudiant($etudiant);
+			//test si la personne conserve le meme type
+			if($_SESSION['newType']==$_SESSION['type']){
+				//le type est conservé
+				if($_SESSION['type'] == 'personnel'){
+					//la personne reste un membre du personnel
+					$salarie = new Salarie(
+						array('per_num'=> $_SESSION['idpersonneModifiee'],
+						'sal_telprof' => $_POST['telpro'],
+						'fon_num' => $_POST['fonction']
+					)); //enregistrement des nouvelles infos saisies
+					$salarieManager -> updateSalarie($salarie);
+				}else{
+					//la personne reste un étudiant
+					$etudiant = new Etudiant(
+						array('per_num'=> $_SESSION['idpersonneModifiee'],
+						'dep_num' => $_POST['dep'],
+						'div_num' => $_POST['annee']
+					)); //enregistrement des nouvelles infos saisies
+					$etudiantManager -> updateEtudiant($etudiant);
 
-
-				?>
-				<img src="image\valid.png" alt="confirmation validee">
-				La personne a bien été modifiée
-
-				<?php
-				unset($_SESSION['newType']);
-				unset($_SESSION['idPersonneAModifier']);
-				unset($_SESSION['type']);
-				unset($_SESSION['salarie']);
-				unset($_SESSION['etudiant']);
-				unset($_SESSION['personne']); // on supprime les variables de session dont on a plus besoin
-
-
+				}
 
 			}
+
+
+			?>
+			<img src="image\valid.png" alt="confirmation validee">
+			La personne a bien été modifiée
+
+			<?php
+			unset($_SESSION['newType']);
+			unset($_SESSION['idPersonneAModifier']);
+			unset($_SESSION['type']);
+			unset($_SESSION['personne']); // on supprime les variables de session dont on a plus besoin
+
+
+
 		}
 	}
+}
 
-	?>
+?>
