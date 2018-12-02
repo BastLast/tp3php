@@ -41,4 +41,17 @@ class ParcoursManager{
 		return $nbParcours;
 		$req -> closeCursor();
 	}
+
+	//fonction permettant de récuperer un parcours à partir des 2 villes qui le compose
+	public function getParcoursByVilles($ville1,$ville2){
+
+		$req = $this->db->prepare('SELECT par_num,par_km,vil_num1,vil_num2 FROM parcours
+			WHERE (vil_num1= :ville1 AND vil_num2= :ville2) OR (vil_num1= :ville2 AND vil_num2= :ville1)');
+			$req ->bindValue(':ville1',$ville1,PDO::PARAM_STR);
+			$req ->bindValue(':ville2',$ville2,PDO::PARAM_STR);
+		$req->execute();
+		return new Parcours($req->fetch(PDO::FETCH_OBJ));
+		$req -> closeCursor();
+	}
+
 }

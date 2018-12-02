@@ -27,7 +27,7 @@
     if(empty($_POST['places'])){ //deuxieme passage sur la page
       $_SESSION['villeD'] = $_POST['villeD'];
       ?><label>Ville de départ :</label>  <?php
-      $villeD = new Ville($villeManager->getVilleById($_SESSION['villeD']));
+      $villeD = $villeManager->getVilleById($_SESSION['villeD']);
       echo $villeD->getNomVille();
       ?> <br>
 
@@ -60,7 +60,26 @@
         <?php
       }
       else{ // 3 eme passage sur la page
-
+        $parcours = $parcoursManager->getParcoursByVilles($_SESSION['villeD'],$_POST['villeA']);
+        if($_SESSION['villeD'] == $parcours->getVille1()){
+          $sens = 0;
+        }else{
+          $sens = 1;
+        }
+        $personne = $personneManager->getPersonneByLogin($_SESSION['co']);
+        $propose = new Propose(
+          array('par_num' => $parcours->getParNum(),
+          'per_num' => $personne->getPerNum(),
+          'pro_date' => $_POST['date'],
+          'pro_time' => $_POST['heure'],
+          'pro_place'=> $_POST['places'],
+          'pro_sens' => $sens)
+        );
+        $proposeManager -> addPropose($propose);
+        ?>
+        <img src="image\valid.png" alt="confirmation validee">
+        La proposition de trajet a bien été ajoutée
+        <?php
       }
     }
   }

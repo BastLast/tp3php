@@ -26,7 +26,7 @@ if (empty($_POST)){
 		<div>
 			<input type="password" name="password" size="4" required>
 		</div>
-	</div>	
+	</div>
 	<div id="captcha">
 		  <?php
 		  $nb2 = rand(1 , 9);
@@ -66,6 +66,7 @@ if (empty($_POST)){
     if($personne -> checkPassword($_POST['password'])){
       // le mot de passe est OK
       $_SESSION['co'] = $personne->getPerLogin();
+      unset($_SESSION['verifCaptcha']);
       ?>
       <h1>Connexion Réussie</h1>
       Vous allez etre redirigé dans 2 secondes !

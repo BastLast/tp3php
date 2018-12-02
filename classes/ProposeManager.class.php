@@ -8,14 +8,15 @@ class ProposeManager{
 	//fonction permettant d'jouter une proposition de trajet
 	public function addPropose($Propose){
 		$req=$this->db->prepare
-		('INSERT INTO propose (per_num,pro_date,pro_time,pro_place,pro_sens)
-		VALUES (:num,:prodate,:protime,:places,:login)');
+		('INSERT INTO propose (par_num,per_num,pro_date,pro_time,pro_place,pro_sens)
+		VALUES (:parnum,:pernum,:prodate,:protime,:places,:sens)');
 
-		$req ->bindValue(':num',$Propose->getPerNum(),PDO::PARAM_STR);
-		$req ->bindValue(':prodate',$Propose->getPerPrenom(),PDO::PARAM_STR);
-		$req ->bindValue(':protime',$Propose->getPerTel(),PDO::PARAM_STR);
-		$req ->bindValue(':places',$Propose->getPerMail(),PDO::PARAM_STR);
-		$req ->bindValue(':sens',$Propose->getPerLogin(),PDO::PARAM_STR);
+		$req ->bindValue(':parnum',$Propose->getParNum(),PDO::PARAM_STR);
+		$req ->bindValue(':pernum',$Propose->getPerNum(),PDO::PARAM_STR);
+		$req ->bindValue(':prodate',$Propose->getProDate(),PDO::PARAM_STR);
+		$req ->bindValue(':protime',$Propose->getProTime(),PDO::PARAM_STR);
+		$req ->bindValue(':places',$Propose->getProPlace(),PDO::PARAM_STR);
+		$req ->bindValue(':sens',$Propose->getProSens(),PDO::PARAM_STR);
 
 
 		$req->execute();
