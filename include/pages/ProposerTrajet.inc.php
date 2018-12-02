@@ -32,7 +32,7 @@
       ?> <br>
 
       <form action="#" id="FormProposeTrajet" method="post">
-       <label>Ville d'arrivée :</label> <select name="villeA">
+        <label>Ville d'arrivée :</label> <select name="villeA">
           <?php
           $listeVillesCompatible = $villeManager->getListCompatible($_SESSION['villeD']);
           foreach ($listeVillesCompatible as $ville) {
@@ -54,14 +54,14 @@
         echo '<input name="heure" type="time" value="'.$heure.'">'
         ?>
         <label>Nombre de place :<label> <input name="places" type="text" size="4" required>
-        <input class="button" type="submit" value="Valider">
-      </form>
+          <input class="button" type="submit" value="Valider">
+        </form>
 
-      <?php
-    }
-    else{ // 3 eme passage sur la page
+        <?php
+      }
+      else{ // 3 eme passage sur la page
 
+      }
     }
   }
-}
-?>
+  ?>
