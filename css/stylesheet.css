@@ -297,6 +297,9 @@ a:hover span{
 #FormParcours{
 	width:100%
 }
-#FormLogin div {
-	margin:0px;
+
+#bouttonValid{
+	display: -moz-inline-box;
+	margin: 5px;
+	margin-top: 15px;
 }

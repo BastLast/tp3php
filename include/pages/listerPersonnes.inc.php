@@ -37,9 +37,7 @@ Actuellement
 		$salarie = $salarieManager->getSalarieById($_GET["num"]);
 		$departement = $departementManager->getDepartementById($etudiant->getDepNum());
 		$ville = $villeManager->getVilleById($departement->getVilNum());
-    var_dump($salarieManager->getSalarieById($_GET["num"]));
 		$fonction=$fonctionManager->getFonctionById($salarie->getFonNum());
-    var_dump($fonction);
 
 		if($personneManager->estEtudiantByid($_GET["num"])){
 		?>

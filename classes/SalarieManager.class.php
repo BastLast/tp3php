@@ -22,7 +22,7 @@ class SalarieManager{
 		if(isset($id)){
 
 			$req=$this->db->prepare(
-				'SELECT per_num,sal_telprof,fon_num FROM salarie where per_num= :id'
+				'SELECT per_num,sal_telprof,fon_num FROM salarie where per_num = :id'
 			);
 			$req->bindValue(':id',$id,PDO::PARAM_STR);
 			$req->execute();
