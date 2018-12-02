@@ -131,9 +131,13 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                     $note = $personneManager->getNoteByid($propose->getPerNum());
                     $dernierAvis = $personneManager->getLastAvisByid($propose->getPerNum());
                     ?>
-                    <span title = 'Moyenne des avis : <?php echo $note; ?> Dernier avis : <?php echo $dernierAvis; ?>'>
-                      <?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?>
+                    <p>
+                  <a href="#">  <?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?>
+                    <span>
+                      Moyenne des avis : <?php echo $note; ?> Dernier avis : <?php echo $dernierAvis; ?>
                     </span>
+                    </a>
+                    </p>
                   </td>
                 </tr>
               <?php } ?>

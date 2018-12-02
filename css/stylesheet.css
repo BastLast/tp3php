@@ -179,7 +179,7 @@ form{
 	width: 50%;
 	display: inline-block;
 	text-align: center;
-	margin-right: 20% 
+	margin-right: 20%
 
 }
 form div {
@@ -268,6 +268,20 @@ form div #champ{
 	width: 70%;
 }
 
-span{
-cursor:pointer;
+a span{
+	display:none;
+	color:#fff;
+	background:rgba(51,51,51,0.75);
+	padding:5px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	width:100px;
+	text-align:center;
+	position: absolute;
+	z-index:10;
+	font-size: 10px
+}
+a:hover span{
+	display:block;
 }
