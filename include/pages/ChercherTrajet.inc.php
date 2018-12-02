@@ -38,7 +38,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 				echo $villeD->getNomVille();
 				?>
 			</div>
-			
+
 			<div>
 				<label>Ville d'arrivée :</label> <select name="villeA">
 				  <?php
@@ -50,7 +50,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 				</select>
 			</div>
 		</div>
-		
+
 		<div>
 			<div>
 				<label>Date de départ : </label>
@@ -60,7 +60,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 				echo '<input name="date" type="date" value="'.$date.'">'
 				?>
 			</div>
-			
+
 			<div>
 				<label>Précision  :</label>
 				<select name="precision">
@@ -71,7 +71,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
 				</select>
 			</div>
 		</div>
-		
+
 		<div>
         <label>A partir de : <label>
           <select name="heuremin">
@@ -82,11 +82,11 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
             ?>
           </select>
 		</div>
-		
+
 		<div class="boutton">
           <input class="button" type="submit" value="Valider">
         </div>
-		
+
 		</form>
 
         <?php
@@ -131,8 +131,7 @@ if(empty($_SESSION['co'])){ // l'utilisateur n'est pas connecté
                     $note = $personneManager->getNoteByid($propose->getPerNum());
                     $dernierAvis = $personneManager->getLastAvisByid($propose->getPerNum());
                     ?>
-                    <span title = "Moyenne des avis : <?php echo $note; ?>
-                      Dernier avis : :<?php echo $dernierAvis; ?>">
+                    <span title = 'Moyenne des avis : <?php echo $note; ?> Dernier avis : <?php echo $dernierAvis; ?>'>
                       <?php echo $conducteur->getPerPrenom()." ". $conducteur->getPerNom();?>
                     </span>
                   </td>
