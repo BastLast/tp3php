@@ -48,10 +48,11 @@ class ProposeManager{
 			((pp.vil_num1 = :vilnum1 AND pp.vil_num2 = :vilnum2 AND p.pro_sens = 0)
 			OR
 			(pp.vil_num1 = :vilnum2 AND pp.vil_num2 = :vilnum1 AND p.pro_sens = 1))
-			AND (pro_date = :datevoulue AND pro_time > :heure)
-			OR(pro_date <= :datemax AND pro_date >= :datemin)
+			AND  pro_time > :heure
+			AND pro_date <= :datemax
+			AND pro_date >= :datemin
 			ORDER BY pro_date,pro_time");
-			
+
 			$datemin = date("Y-m-d", strtotime("-$precision day", strtotime($date)));
 			$datemax = date("Y-m-d", strtotime("+$precision day", strtotime($date)));
 
