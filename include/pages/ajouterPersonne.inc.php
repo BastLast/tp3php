@@ -44,11 +44,11 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 		<div class="clear"></div>
 		
 		<div class="categorie">
-		<label>Categorie:</label> <input  type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
-		<input type="radio" name="type" value="personnel" size="4"> <label>Personnel</label>
+			<label>Categorie:</label> <input  type="radio" name="type" value="etudiant" size="4" checked="checked"> <label>Etudiant</label>
+			<input type="radio" name="type" value="personnel" size="4"> <label>Personnel</label>
 		</div>
 		<div class="boutton">
-		<input class="button" type="submit" value="Valider">
+			<input class="button" type="submit" value="Valider">
 		</div>
 	</form>
 
@@ -76,18 +76,24 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			?>
 			<h1>Ajouter un salaries</h1>
 			<form id="FormPersonnel" method="post">
-				<label>Telephone professionnel: </label> <input type="tel" name="telpro" required>
-				<label>Fonction:</label> <select class="champSaisie" name="fonction">
+			<div>
+				<div>
+					<label>Telephone professionnel: </label> <input type="tel" name="telpro" required>
+				</div>
+				<div>
+					<label>Fonction:</label> <select class="champSaisie" name="fonction">
 					<?php
 					$listeFonctions = $fonctionManager->getList();
 					foreach ($listeFonctions as $fonction) {
 						echo '<option value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
 					}
 					?>
-				</select>
-				<div>
-					<input class="button" type="submit" value="Valider">
+					</select>
 				</div>
+			</div>
+			<div class="boutton">
+				<input class="button" type="submit" value="Valider">
+			</div>
 			</form>
 			<?php
 		}
@@ -98,28 +104,29 @@ if (empty($_POST)){ // c'est la premiere fois que la page est appelée
 			<h1>Ajouter un etudiant</h1>
 			<form id="FormEtudiant" method="post">
 			<div>
-				<label>Annee:</label> <select class="champSaisie" name="annee">
-					<?php
-					$listeDivisions = $divisionManager->getList();
-					foreach ($listeDivisions as $division) {
-						echo '<option value="'.$division->getDivNum().'">'.$division->getDivNom().'</option>';
-					}
-					?>
-				</select>
-			</div>
-			<div>
-				<label>Departement:</label> <select class="champSaisie" name="dep">
-					<?php
-					$listeDepartements = $departementManager->getList();
-					foreach ($listeDepartements as $departement) {
-						echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
-					}
-					?>
-				</select>
-			
-				<div >
-				<input class="button" type="submit" value="Valider">
+				<div>
+					<label>Annee:</label> <select class="champSaisie" name="annee">
+						<?php
+						$listeDivisions = $divisionManager->getList();
+						foreach ($listeDivisions as $division) {
+							echo '<option value="'.$division->getDivNum().'">'.$division->getDivNom().'</option>';
+						}
+						?>
+					</select>
 				</div>
+				<div>
+					<label>Departement:</label> <select class="champSaisie" name="dep">
+						<?php
+						$listeDepartements = $departementManager->getList();
+						foreach ($listeDepartements as $departement) {
+							echo '<option value="'.$departement->getDepNum().'">'.$departement->getDepNom().'</option>';
+						}
+						?>
+					</select>
+				</div>
+			<div class="boutton">
+				<input class="button" type="submit" value="Valider">
+			</div>
 			</form>
 			<?php
 		}

@@ -89,22 +89,30 @@ if(empty($_POST)){ //premier passage sur la page
 				//la personne à modifier est ou doit devenir un membre du personnel
 				?>
 				<form id="FormPersonnel" method="post">
-					Telephone professionnel: <input type="text" name="telpro" value="<?php echo $_SESSION['salarie']->getTelProf()?>" >
-					Fonction: <select name="fonction">
-						<?php
-						$listeFonctions = $fonctionManager->getList();
-						foreach ($listeFonctions as $fonction) {
-							if ($_SESSION['salarie']->getFonNum() == $fonction->getFonNum()) {
-								echo '<option selected';
-							}else{
-								echo '<option';
-							}
-							echo '  value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
+					<div>
+						<div>
+							<label>Telephone professionnel:</label> <input type="text" name="telpro" value="<?php echo $_SESSION['salarie']->getTelProf()?>" >
+						</div>
+						<div>
+							<label>Fonction:</label> <select name="fonction">
+								<?php
+								$listeFonctions = $fonctionManager->getList();
+								foreach ($listeFonctions as $fonction) {
+									if ($_SESSION['salarie']->getFonNum() == $fonction->getFonNum()) {
+										echo '<option selected';
+									}else{
+										echo '<option';
+									}
+									echo '  value="'.$fonction->getFonNum().'">'.$fonction->getFonLib().'</option>';
 
-						}
-						?>
-					</select>
-					<input type="submit" value="Valider">
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="boutton">
+						<input class="button" type="submit" value="Valider">
+					</div>
 				</form>
 				<?php
 			}
@@ -113,7 +121,9 @@ if(empty($_POST)){ //premier passage sur la page
 				//la personne à modifier est ou doit devenir un étudiant
 				?>
 				<form id="FormEtudiant" method="post">
-					Annee: <select name="annee">
+				<div>
+				<div>
+					<label>Annee:</label> <select name="annee">
 						<?php
 						$listeDivisions = $divisionManager->getList();
 						foreach ($listeDivisions as $division) {
@@ -126,6 +136,8 @@ if(empty($_POST)){ //premier passage sur la page
 						}
 						?>
 					</select>
+				</div>
+				<div>
 					Departement: <select name="dep">
 						<?php
 						$listeDepartements = $departementManager->getList();
@@ -139,7 +151,11 @@ if(empty($_POST)){ //premier passage sur la page
 						}
 						?>
 					</select>
-					<input type="submit" value="Valider">
+				</div>
+				</div>
+				<div class="boutton">
+					<input class="button" type="submit" value="Valider">
+				</div>
 				</form>
 				<?php
 			}
