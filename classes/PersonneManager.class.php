@@ -140,12 +140,37 @@ class PersonneManager{
 	//fonction récuperant la note moyenne d'un utilisateur
 	public function getNoteByid($id){
 
+		if(isset($id)){
+			$req=$this->db->prepare(
+				'SELECT AVG(avi_note) AS moyenne FROM avis WHERE per_num= :id'
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
+
+			$res = $req->fetch(PDO::FETCH_OBJ);
+			return round($res->moyenne,2);
+			$req->closeCursor();
+
+		}
 	}
 
 //fonction permettant de recuperer le dernier avis laissé sur le profil d'un utilisateur
 	public function getLastAvisByid($id){
 
+		if(isset($id)){
+			$req=$this->db->prepare(
+				'SELECT avi_comm AS commentaire FROM avis
+				WHERE per_num= :id and avi_date <= ALL(
+					SELECT avi_date FROM avis WHERE per_num= :id)'
+			);
+			$req->bindValue(':id',$id,PDO::PARAM_STR);
+			$req->execute();
 
+			$res = $req->fetch(PDO::FETCH_OBJ);
+			return $res->commentaire;
+			$req->closeCursor();
+
+		}
 	}
 
 }
