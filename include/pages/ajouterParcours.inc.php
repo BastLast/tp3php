@@ -26,8 +26,6 @@ if (empty($_POST)){
   </form>
   <?php
 }else{
-  ?>
-  <?php
   $parcour = new Parcours(
     array('par_km' => $_POST['parkm'],
     'vil_num1' => $_POST['ville1'],
