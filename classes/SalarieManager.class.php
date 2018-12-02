@@ -46,7 +46,7 @@ class SalarieManager{
 //fonction permettant de mettre à jour un salarié
 	public function updateSalarie($salarie){
 		$req=$this->db->prepare(
-			'UPDATE salarie SET per_num=:per_num,sal_telprof=:sal_telprof,fon_num=:fon_num'
+			'UPDATE salarie SET sal_telprof= :sal_telprof,fon_num= :fon_num WHERE per_num= :per_num'
 		);
 		$rep->bindValue(":per_num",$salarie->getPerNum(),PDO::PARAM_INT);
 		$rep->bindValue(":sal_telprof",$salarie->getTelProf(),PDO::PARAM_INT);

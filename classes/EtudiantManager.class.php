@@ -46,7 +46,7 @@ class EtudiantManager{
 	//fonction permettant de mettre à jour un étudiant
 	public function updateEtudiant($etudiant){
 		$req=$this->db->prepare(
-			'UPDATE etudiant SET per_num=:per_num, dep_num=:dep_num, div_num=:div_num'
+			'UPDATE etudiant SET dep_num= :dep_num, div_num= :div_num WHERE per_num= :per_num'
 		);
 		$req->bindValue(":per_num",$etudiant->getPerNum(),PDO::PARAM_INT);
 		$req->bindValue(":dep_num",$etudiant->getDepNum(),PDO::PARAM_INT);

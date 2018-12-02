@@ -117,12 +117,12 @@ class PersonneManager{
 		}
 	}
 
-//fonction permettant de mettre à jour une personne
+	//fonction permettant de mettre à jour une personne
 	public function updatePersonne($personne){
 		if(isset($personne)){
 			$req=$this->db->prepare(
 				'UPDATE personne SET per_nom= :per_nom, per_prenom= :per_prenom, per_tel= :per_tel, per_mail= :per_mail,
-				 per_login= :per_login, per_pwd= :per_pwd
+				per_login= :per_login, per_pwd= :per_pwd
 				WHERE per_num= :per_num'
 			);
 			$req->bindValue(':per_num',$personne->getPerNum(),PDO::PARAM_STR);
@@ -136,4 +136,5 @@ class PersonneManager{
 			$req->closeCursor();
 		}
 	}
+
 }
